@@ -1,0 +1,55 @@
+<html>
+<head>
+    <script src="blockly_compressed.js"></script>
+    <script src="blocks_compressed.js"></script>
+    <script src="python_compressed.js"></script>
+    <script src="msg/js/es.js"></script>
+</head>
+<body>
+    <div style="display: flex;">
+        <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+        <div><textarea  id="textarea" style="height: 480px; width: 200px;"></textarea></div>
+    </div>
+    <xml id="toolbox" style="display: none">
+        <category name="Primitivas">
+            <block type="text_print"></block>
+        </category>
+        <category name="Mis procedimientos" custom="PROCEDURE">
+        </category>
+        <category name="Repeticiones">
+            <block type="controls_repeat_ext"></block>
+            <block type="controls_whileUntil"></block>
+        </category>
+        <category name="Alternativas">
+            <block type="controls_if"></block>
+        </category>
+        <category name="Valores">
+            <block type="math_number"></block>
+            <block type="text"></block>
+        </category>
+        <category name="Operadores">
+            <block type="logic_compare"></block>
+            <block type="math_arithmetic"></block>
+        </category>
+      </xml>
+      <script>
+        var workspace = Blockly.inject('blocklyDiv',
+            {toolbox: document.getElementById('toolbox'),
+            zoom:
+                {controls: true,
+                wheel: true,
+                startScale: 1.0,
+                maxScale: 3,
+                minScale: 0.3,
+                scaleSpeed: 1.2},
+            trashcan: true,
+            comments: false});
+        function myUpdateFunction(event) {
+            var code = Blockly.Python.workspaceToCode(workspace);
+            document.getElementById('textarea').value = code;
+        }
+        workspace.addChangeListener(myUpdateFunction);
+      </script>
+            
+</body>
+</html>
