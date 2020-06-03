@@ -1,7 +1,16 @@
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <script src="../acorn_interpreter.js"></script>
     <script src="../blockly_compressed.js"></script>
     <script src="../blocks_compressed.js"></script>
@@ -12,24 +21,44 @@
 </head>
 
 <body>
-    <div id="titulo_ejercicio">Hola mundo</div>
-    <div id="enunciado">
-    Al aprender un nuevo lenguaje de programación usualmente empezamos por lo que llamamos “¡Hola Mundo!”.
+    <nav>
+    <div class="nav-wrapper">
+        <i class="material-icons left">code</i>
+        <a href="#" class="brand-logo">Unipe Blockly</a>
+      </div>
+    </nav>
+    <div class="container">
+        <div id="titulo_ejercicio">
+            <h4>Hola mundo</h4>
+        </div>
+    <div id="enunciado" class="col s12">
+        <blockquote>
+        Al aprender un nuevo lenguaje de programación usualmente empezamos por lo que llamamos “¡Hola Mundo!”.
 
-Es un programa que sólo imprime “¡Hola Mundo!” en la salida.
+        Es un programa que sólo imprime “¡Hola Mundo!” en la salida.
 
-¡A programar!
-
-</div>
-    Input
-    <textarea id="input" name="FIELDNAME" style="height: 100px; width: 200px;"></textarea>
-    Output
-    <textarea id="output" style="height: 100px; width: 200px;"></textarea>
-    <button id="execute" onclick="execute()">excecute</button>
-    <div style="display: flex;">
-        <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
-        <div><textarea id="textarea" style="height: 480px; width: 200px;"></textarea></div>
+        ¡A programar!
+    </blockquote>
     </div>
+    <div class="card-panel row">
+        <div class="col s12 m4 l3">
+            Entrada
+            <textarea id="input" style="height: 100px; width: 200px;"></textarea>
+            Salida
+            <textarea id="output" style="height: 100px; width: 200px;"></textarea>
+        </div>
+        <div class="col s12 m8 l9" style="display: flex;">
+            <div id="blocklyDiv" style="height: 480px; width: 600px;">
+                <button id="execute" class="btn waves-effect waves-light" onclick="execute()">
+                    <i class="material-icons left">play_arrow</i>
+                    ejecutar
+                </button>
+
+            </div>
+            <div><textarea id="textarea" style="height: 480px; width: 200px;"></textarea></div>
+        </div>
+    </div>
+</div>
     <xml id="toolbox" style="display: none">
         <category name="Primitivas">
             <block type="text_print"></block>
