@@ -2,16 +2,25 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="acorn_interpreter.js"></script>
-    <script src="blockly_compressed.js"></script>
-    <script src="blocks_compressed.js"></script>
-    <script src="python_compressed.js"></script>
-    <script src="javascript_compressed.js"></script>
-    <script src="msg/js/es.js"></script>
-    <script src="wait_block.js"></script>
+    <script src="../acorn_interpreter.js"></script>
+    <script src="../blockly_compressed.js"></script>
+    <script src="../blocks_compressed.js"></script>
+    <script src="../python_compressed.js"></script>
+    <script src="../javascript_compressed.js"></script>
+    <script src="../msg/js/es.js"></script>
+    <script src="../wait_block.js"></script>
 </head>
 
 <body>
+    <div id="titulo_ejercicio">Hola mundo</div>
+    <div id="enunciado">
+    Al aprender un nuevo lenguaje de programación usualmente empezamos por lo que llamamos “¡Hola Mundo!”.
+
+Es un programa que sólo imprime “¡Hola Mundo!” en la salida.
+
+¡A programar!
+
+</div>
     Input
     <textarea id="input" name="FIELDNAME" style="height: 100px; width: 200px;"></textarea>
     Output
@@ -27,23 +36,11 @@
         </category>
         <category name="Mis procedimientos" custom="PROCEDURE">
         </category>
-        <category name="Repeticiones">
-            <block type="controls_repeat_ext"></block>
-            <block type="controls_whileUntil"></block>
-        </category>
-        <category name="Alternativas">
-            <block type="controls_if"></block>
-        </category>
         <category name="Valores">
-            <block type="math_number"></block>
             <block type="text"></block>
         </category>
-        <category name="Operadores">
-            <block type="logic_compare"></block>
-            <block type="math_arithmetic"></block>
-        </category>
     </xml>
-    <script src="blockly_executer.js"></script>
+    <script src="../blockly_executer.js"></script>
 </body>
 
 </html>
