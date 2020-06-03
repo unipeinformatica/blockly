@@ -42,20 +42,19 @@
     </div>
     <div class="card-panel row">
         <div class="col s12 m4 l3">
+            <button id="execute" class="btn waves-effect waves-light" onclick="execute()">
+                <i class="material-icons left">play_arrow</i>
+                ejecutar
+            </button>
             Entrada
-            <textarea id="input" style="height: 100px; width: 200px;"></textarea>
+            <textarea id="input" style="height: 100px; width: 100%;"></textarea>
             Salida
-            <textarea id="output" style="height: 100px; width: 200px;"></textarea>
+            <textarea id="output" style="height: 100px; width: 100%;"></textarea>
         </div>
-        <div class="col s12 m8 l9" style="display: flex;">
-            <div id="blocklyDiv" style="height: 480px; width: 600px;">
-                <button id="execute" class="btn waves-effect waves-light" onclick="execute()">
-                    <i class="material-icons left">play_arrow</i>
-                    ejecutar
-                </button>
-
+        <div class="col s12 m8 l9" style="display: flex; height: 480px;">
+            <div id="blocklyDiv" class="col s10 m10 l10">
             </div>
-            <div><textarea id="textarea" style="height: 480px; width: 200px;"></textarea></div>
+            <div class="col s2 m2 l2"><textarea id="textarea" style="height: 100%;"></textarea></div>
         </div>
     </div>
 </div>

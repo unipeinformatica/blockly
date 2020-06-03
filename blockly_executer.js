@@ -1,3 +1,8 @@
+var MOSTRAR_CODIGO = false;
+window.onload = function() {
+    document.getElementById("textarea").hidden=!MOSTRAR_CODIGO;
+}
+
 var workspace = Blockly.inject('blocklyDiv',
     {
         toolbox: document.getElementById('toolbox'),
