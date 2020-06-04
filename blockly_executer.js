@@ -105,6 +105,20 @@ function resetInterpreter() {
     }
 }
 
+
+function save() {
+    let contenido = {
+        version: 1.0,
+        actividad: "holamundo",
+        solucion: btoa(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()))
+      };
+    var a = document.getElementById("placeholder");
+    a.download = 'hola.spbq';
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(contenido)], { type: 'application/octet-stream' }));
+    a.type = 'application/octet-stream';
+    a.click();
+}
+
 function execute() {
     if (!myInterpreter) {
         // First statement of this code.
