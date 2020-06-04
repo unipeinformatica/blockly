@@ -106,29 +106,7 @@ function resetInterpreter() {
 }
 
 document.getElementById('file-upload')
-    .addEventListener('change', open, false);
-
-function open(e) {
-    var file = e.target.files[0];
-    if (!file) {
-        return;
-    }
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        var contents = e.target.result;
-        displayContents(contents);
-    };
-    reader.readAsText(file);
-}
-
-function displayContents(contents) {
-
-    let workspace = Blockly.getMainWorkspace();
-    workspace.clear();
-    data = JSON.parse(contents);
-    solucion = atob(data.solucion);
-    Blockly.Xml.domToWorkspace(solucion, workspace);
-}
+    .addEventListener('change', leerSolucionWeb, false);
 
 function leerSolucionWeb(e) {
     var archivo = e.target.files[0];
@@ -156,12 +134,11 @@ function cargarSolucion(contenido) {
         solucion = atob(data.solucion);
         let workspace = Blockly.getMainWorkspace();
         workspace.clear();
-        Blockly.Xml.domToWorkspace(solucion, workspace);
+        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(solucion), workspace);
     } catch (e) {
         console.error(e);
         throw "Lo siento, este archivo no tiene una solución de Pilas Bloques.";
     }
-
 
     let errors = [];
 
@@ -182,7 +159,7 @@ function save() {
     let contenido = {
         version: 1.0,
         actividad: "holamundo",
-        solucion: btoa(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()))
+        solucion: btoa(Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace())))
     };
     var a = document.getElementById("placeholder");
     a.download = 'hola.spbq';
