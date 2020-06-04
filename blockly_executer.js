@@ -1,6 +1,6 @@
 var MOSTRAR_CODIGO = false;
-window.onload = function() {
-    document.getElementById("textarea").hidden=!MOSTRAR_CODIGO;
+window.onload = function () {
+    document.getElementById("textarea").hidden = !MOSTRAR_CODIGO;
 }
 
 var workspace = Blockly.inject('blocklyDiv',
@@ -105,13 +105,85 @@ function resetInterpreter() {
     }
 }
 
+document.getElementById('file-upload')
+    .addEventListener('change', open, false);
+
+function open(e) {
+    var file = e.target.files[0];
+    if (!file) {
+        return;
+    }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var contents = e.target.result;
+        displayContents(contents);
+    };
+    reader.readAsText(file);
+}
+
+function displayContents(contents) {
+
+    let workspace = Blockly.getMainWorkspace();
+    workspace.clear();
+    data = JSON.parse(contents);
+    solucion = atob(data.solucion);
+    Blockly.Xml.domToWorkspace(solucion, workspace);
+}
+
+function leerSolucionWeb(e) {
+    var archivo = e.target.files[0];
+    if (!archivo) {
+        return;
+    }
+    var reader = new FileReader();
+    return new Promise((resolve, reject) => {
+        reader.onerror = err => reject(err);
+
+        reader.onload = event => resolve(event.target.result);
+
+        reader.readAsText(archivo);
+    }).then(contenido => cargarSolucion(contenido));
+}
+
+function cargarSolucion(contenido) {
+    // let regex_file = /\.spbq$/
+    // let regex_version = /^\d+$/
+    let data = null;
+    let solucion = null;
+
+    try {
+        data = JSON.parse(contenido);
+        solucion = atob(data.solucion);
+        let workspace = Blockly.getMainWorkspace();
+        workspace.clear();
+        Blockly.Xml.domToWorkspace(solucion, workspace);
+    } catch (e) {
+        console.error(e);
+        throw "Lo siento, este archivo no tiene una solución de Pilas Bloques.";
+    }
+
+
+    let errors = [];
+
+    if ("holamundo" !== data.actividad) {
+        errors.push("Cuidado, el archivo indica que es para otra actividad (".concat(data.actividad, "). Se cargar\xE1 de todas formas, pero puede fallar."));
+    }
+
+    if (1.0 > data.version) {
+        errors.push("Cuidado, el archivo indica que es de una versión anterior. Se cargará de todas formas, pero te sugerimos que resuelvas nuevamente el ejercicio y guardes un nuevo archivo.");
+    }
+
+    if (errors.length !== 0) {
+        throw errors.join('\n');
+    }
+}
 
 function save() {
     let contenido = {
         version: 1.0,
         actividad: "holamundo",
         solucion: btoa(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()))
-      };
+    };
     var a = document.getElementById("placeholder");
     a.download = 'hola.spbq';
     a.href = URL.createObjectURL(new Blob([JSON.stringify(contenido)], { type: 'application/octet-stream' }));

@@ -18,6 +18,11 @@
     <script src="../javascript_compressed.js"></script>
     <script src="../msg/js/es.js"></script>
     <script src="../wait_block.js"></script>
+    <style>
+        input[type="file"] {
+    display: none;
+}
+    </style>
 </head>
 
 <body>
@@ -46,12 +51,13 @@
                 <i class="material-icons left">play_arrow</i>
                 ejecutar
             </button>
-            <button id="execute" class="btn waves-effect waves-red waves-ripple" onclick="execute()">
+            <label for="file-upload" id="open" type="file" class="btn waves-effect waves-red waves-ripple">
                 <i class="material-icons left">folder_open</i>
                 abrir
-            </button>
-            <a id="placeholder" class="hidden">..</a>
-            <button id="execute" class="btn waves-effect waves-light" onclick="save()">
+            </label>
+            <input id="file-upload" type="file"/>
+            <a id="placeholder" hidden="hidden">..</a>
+            <button id="save" class="btn waves-effect waves-light" onclick="save()">
                 <i class="material-icons left">save</i>
                 guardar
             </button>
