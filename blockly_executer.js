@@ -166,7 +166,7 @@ function save() {
         actividad: actividad,
         solucion: btoa(Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace())))
     };
-    var a = document.getElementById("placeholder");
+    var a = document.createElement("a");
     a.download = actividad + '.spbq';
     a.href = URL.createObjectURL(new Blob([JSON.stringify(contenido)], { type: 'application/octet-stream' }));
     a.type = 'application/octet-stream';
