@@ -1,6 +1,6 @@
 var MOSTRAR_CODIGO = false;
 window.onload = function () {
-    document.getElementById("textarea").hidden = !MOSTRAR_CODIGO;
+    document.getElementById("codigo_python").hidden = !MOSTRAR_CODIGO;
 }
 
 var workspace = Blockly.inject('blocklyDiv',
@@ -24,7 +24,7 @@ var workspace = Blockly.inject('blocklyDiv',
 Blockly.JavaScript.addReservedWords('exit');
 function myUpdateFunction(event) {
     var code = Blockly.Python.workspaceToCode(workspace);
-    document.getElementById('textarea').value = code;
+    document.getElementById('codigo_python').value = code;
     if (!(event instanceof Blockly.Events.Ui)) {
         // Something changed. Parser needs to be reloaded.
         resetInterpreter();
