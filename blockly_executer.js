@@ -1,4 +1,9 @@
 var MOSTRAR_CODIGO = false;
+var VERSION_CODIGO = 1.0;
+var actividad = ""
+function setActividad(_actividad) {
+    actividad = _actividad;
+}
 window.onload = function () {
     document.getElementById("codigo_python").hidden = !MOSTRAR_CODIGO;
 }
@@ -138,15 +143,15 @@ function cargarSolucion(contenido) {
     } catch (e) {
         console.error(e);
         throw "Lo siento, este archivo no tiene una solución de Pilas Bloques.";
-    }
+    }   
 
     let errors = [];
 
-    if ("holamundo" !== data.actividad) {
+    if (this.actividad !== data.actividad) {
         errors.push("Cuidado, el archivo indica que es para otra actividad (".concat(data.actividad, "). Se cargar\xE1 de todas formas, pero puede fallar."));
     }
 
-    if (1.0 > data.version) {
+    if (VERSION_CODIGO > data.version) {
         errors.push("Cuidado, el archivo indica que es de una versión anterior. Se cargará de todas formas, pero te sugerimos que resuelvas nuevamente el ejercicio y guardes un nuevo archivo.");
     }
 
@@ -157,12 +162,12 @@ function cargarSolucion(contenido) {
 
 function save() {
     let contenido = {
-        version: 1.0,
-        actividad: "holamundo",
+        version: VERSION_CODIGO,
+        actividad: actividad,
         solucion: btoa(Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace())))
     };
     var a = document.getElementById("placeholder");
-    a.download = 'hola.spbq';
+    a.download = actividad + '.spbq';
     a.href = URL.createObjectURL(new Blob([JSON.stringify(contenido)], { type: 'application/octet-stream' }));
     a.type = 'application/octet-stream';
     a.click();
