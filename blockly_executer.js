@@ -60,10 +60,13 @@ function initApi(interpreter, globalObject) {
     };
     interpreter.setProperty(globalObject, 'prompt',
         interpreter.createNativeFunction(wrapper));
-
+        Blockly.DOMParser = window.DOMParser;
+        Blockly.Element   = window.Element;
+        Blockly.document  = window.document;
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
 
+    initVariables();
     // Add an API function for highlighting blocks.
     // Add an API function for highlighting blocks.
     var wrapper = function (id) {
@@ -139,6 +142,7 @@ function cargarSolucion(contenido) {
         solucion = atob(data.solucion);
         let workspace = Blockly.getMainWorkspace();
         workspace.clear();
+        Blockly.Events.disable()
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(solucion), workspace);
     } catch (e) {
         console.error(e);
