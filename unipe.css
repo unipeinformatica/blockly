@@ -1,3 +1,23 @@
+body {
+    background-color: lightgrey;
+    color: #23263D;
+    size: 14px;
+    margin: 10px;
+}
+
+h1 {
+    background-color: #23263D;
+    color: white;
+    size: 50px;
+}
+
+blockquote{
+    border-left: solid #23263D;
+    border-bottom: solid #23263D;
+    background-color: darkgray ;
+    color: #23263D;
+}
+
 /* unvisited link */
 a:link {
     color: #ccc;
@@ -16,6 +36,16 @@ a:hover {
 .nav-wrapper {
     background-color: rgba(99, 181, 212, 0.8);
     border: 2px solid rgba(2, 67, 96, 0.8);
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+.enunciado {
+    background-color: rgba(99, 181, 212, 0.8);
+    border: 3px solid rgba(2, 67, 96, 0.8);
+    text-align: center;
+    padding: 3px;
 }
 
 .grid-container {
@@ -31,4 +61,20 @@ a:hover {
     padding: 20px;
     font-size: 30px;
     text-align: center;
+}
+
+.waves-effect{
+    background-color: rgba(2, 67, 96, 0.7);
+}
+
+.waves-effect:hover{
+    background-color: rgba(2, 67, 96, 1);
+}
+
+.waves-light{
+    background-color: rgba(99, 181, 212, 1);
+}
+
+.waves-light:hover{
+    background-color: #23263D;
 }
