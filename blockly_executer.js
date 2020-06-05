@@ -38,7 +38,7 @@ function myUpdateFunction(event) {
 }
 
 
-var outputArea = document.getElementById('output');
+var outputArea = document.getElementById('output_text');
 var myInterpreter = null;
 var highlightPause = false;
 var runButton = document.getElementById('execute');
