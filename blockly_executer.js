@@ -142,13 +142,13 @@ function cargarSolucion(contenido) {
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(solucion), workspace);
     } catch (e) {
         console.error(e);
-        throw "Lo siento, este archivo no tiene una solución de Pilas Bloques.";
+        throw "Lo siento, este archivo no tiene una solución de UNIPE Blockly.";
     }   
 
     let errors = [];
 
     if (this.actividad !== data.actividad) {
-        errors.push("Cuidado, el archivo indica que es para otra actividad (".concat(data.actividad, "). Se cargar\xE1 de todas formas, pero puede fallar."));
+        errors.push("Cuidado, el archivo indica que es para otra actividad (".concat(data.actividad, "). Se cargará de todas formas, pero puede fallar."));
     }
 
     if (VERSION_CODIGO > data.version) {
