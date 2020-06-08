@@ -86,7 +86,6 @@ function initApi(interpreter, globalObject) {
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
 
-    initVariables();
     // Add an API function for highlighting blocks.
     // Add an API function for highlighting blocks.
     var wrapper = function (id) {
@@ -121,7 +120,6 @@ function generateCodeAndLoadIntoInterpreter() {
     //para no tener loops
     window.LoopTrap = 1000;
     Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if(--window.LoopTrap == 0) throw "Infinite loop.";\n';
-    latestCode = Blockly.JavaScript.workspaceToCode(workspace);
     resetStepUi(true);
 }
 
@@ -198,6 +196,8 @@ function save() {
 }
 
 function execute() {
+    initVariables();
+    latestCode = Blockly.JavaScript.workspaceToCode(workspace);
     if (!myInterpreter) {
         // First statement of this code.
         // Clear the program output.
