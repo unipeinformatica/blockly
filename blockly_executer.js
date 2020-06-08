@@ -49,7 +49,8 @@ var runButton = document.getElementById('execute');
 var latestCode = '';
 var runner;
 function initApi(interpreter, globalObject) {
-    // Add an API function for the alert() block, generated for "text_print" blocks.
+    
+   // Add an API function for the alert() block, generated for "text_print" blocks.
     var wrapper = function (text) {
         text = text ? text.toString() : '';
         outputArea.value = outputArea.value + '\n' + text;
@@ -86,7 +87,7 @@ function initApi(interpreter, globalObject) {
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
 
-    initVariables();
+    
     // Add an API function for highlighting blocks.
     // Add an API function for highlighting blocks.
     var wrapper = function (id) {
@@ -199,6 +200,7 @@ function save() {
 
 function execute() {
     if (!myInterpreter) {
+        initVariables();        
         // First statement of this code.
         // Clear the program output.
         resetStepUi(true);

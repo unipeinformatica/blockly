@@ -28,7 +28,7 @@ Blockly.defineBlocksWithJsonArray([{
 
   Blockly.JavaScript['avanzar_caracter'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
-    var code = '' + avanzarCaracter() + ';';    
+    var code = 'avanzarCaracter();';    
     return code;
    
   };
