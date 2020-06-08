@@ -63,6 +63,17 @@ function initApi(interpreter, globalObject) {
         Blockly.DOMParser = window.DOMParser;
         Blockly.Element   = window.Element;
         Blockly.document  = window.document;
+
+    // Add an API function for the leerCaracter() block.
+    var wrapper = function (text) {
+        var texto = '\'' + document.getElementById("input_text").value + '\'';    
+        return texto;    
+    };
+    interpreter.setProperty(globalObject, 'leerCaracter',
+        interpreter.createNativeFunction(wrapper));
+
+
+
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
 

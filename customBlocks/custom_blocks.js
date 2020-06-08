@@ -16,15 +16,11 @@ Blockly.defineBlocksWithJsonArray([{
 
   Blockly.JavaScript['leer_caracter'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
-    var code = '\'' + document.getElementById("input_text").value + '\'';    
+    var code = 'leerCaracter()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
-   
+  
   };
-
-  function leerCaracter() {
-      return  + "";
-  }
-
+ 
   Blockly.Python['leer_caracter'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
     
