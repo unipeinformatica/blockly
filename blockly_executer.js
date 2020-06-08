@@ -79,7 +79,7 @@ function initApi(interpreter, globalObject) {
     var wrapper = function (text) {
         return avanzarCaracter();
     };
-    interpreter.setProperty(globalObject, 'avanzarCaracter',
+    interpreter.setProperty(globalObject, 'avanzar_Caracter',
         interpreter.createNativeFunction(wrapper));
 
 
@@ -113,8 +113,6 @@ function resetStepUi(clearOutput) {
 
 function generateCodeAndLoadIntoInterpreter() {
     // Generate JavaScript code and parse it.
-    Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-    Blockly.JavaScript.addReservedWords('highlightBlock');
     //para highlightear la linea por la que va
     Blockly.JavaScript.addReservedWords('latestCode')
     //para no tener loops
@@ -198,6 +196,7 @@ function save() {
 function execute() {
     initVariables();
     latestCode = Blockly.JavaScript.workspaceToCode(workspace);
+    alert(latestCode);
     if (!myInterpreter) {
         // First statement of this code.
         // Clear the program output.

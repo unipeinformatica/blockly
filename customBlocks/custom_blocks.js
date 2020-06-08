@@ -21,14 +21,14 @@ Blockly.defineBlocksWithJsonArray([{
 
   Blockly.JavaScript['leer_caracter'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
-    var code = 'leerCaracter()';
+    var code = 'leer_Caracter()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   
   };
 
   Blockly.JavaScript['avanzar_caracter'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
-    var code = '' + avanzarCaracter() + ';';    
+    var code = '' + avanzar_Caracter() + ';';    
     return code;
    
   };
