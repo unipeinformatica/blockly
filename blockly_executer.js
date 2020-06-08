@@ -1,6 +1,10 @@
 var MOSTRAR_CODIGO = false;
 var VERSION_CODIGO = 1.0;
 var actividad = ""
+
+Blockly.JavaScript.addReservedWords('posicion_cadena_caracteres');
+var posicion_cadena_caracteres = 0;
+
 function setActividad(_actividad) {
     actividad = _actividad;
 }
@@ -66,12 +70,17 @@ function initApi(interpreter, globalObject) {
 
     // Add an API function for the leerCaracter() block.
     var wrapper = function (text) {
-        var texto = '\'' + document.getElementById("input_text").value + '\'';    
-        return texto;    
+        return leerCaracter();
     };
     interpreter.setProperty(globalObject, 'leerCaracter',
         interpreter.createNativeFunction(wrapper));
 
+    // Add an API function for the avanzarCaracter() block.
+    var wrapper = function (text) {
+        return avanzarCaracter();
+    };
+    interpreter.setProperty(globalObject, 'avanzarCaracter',
+        interpreter.createNativeFunction(wrapper));
 
 
     // Add an API for the wait block.  See wait_block.js
@@ -226,8 +235,7 @@ function execute() {
 generateCodeAndLoadIntoInterpreter();
 workspace.addChangeListener(myUpdateFunction);
 
-Blockly.JavaScript.addReservedWords('posicion_cadena_caracteres');
-var posicion_cadena_caracteres = 0;
+
 
 function initVariables() {
     posicion_cadena_caracteres = 0;
