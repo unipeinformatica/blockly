@@ -1,9 +1,3 @@
-Blockly.JavaScript.addReservedWords('posicion_cadena_caracteres');
-
-function initVariables() {
-    var posicion_cadena_caracteres = 0;
-}
-
 Blockly.defineBlocksWithJsonArray([{
     "type": "leer_caracter",
     "message0": "Leer caracter de entrada",
@@ -12,22 +6,43 @@ Blockly.defineBlocksWithJsonArray([{
     "colour": 230,
     "tooltip": "Leer caracter de entrada",
     "helpUrl": ""
-  }])
+  },
+  {
+    "type": "avanzar_caracter",
+    "message0": "Avanzar caracter",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "Avanzar un caracter de entrada",
+    "helpUrl": ""
+  },
+])
 
   Blockly.JavaScript['leer_caracter'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
-    var code = '\'' + document.getElementById("input_text").value + '\'';    
+    var code = '\'' + leerCaracter() + '\'';    
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
    
   };
 
-  function leerCaracter() {
-      return  + "";
-  }
+  Blockly.JavaScript['avanzar_caracter'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '' + avanzarCaracter() + ';';    
+    return [code];
+   
+  };
 
   Blockly.Python['leer_caracter'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
+    // TODO
     
     var code = '"manola"';
     return [code, Blockly.Python.ORDER_ATOMIC];
+  };
+
+  Blockly.Python['avanzar_caracter'] = function(block) {
+    // TODO
+    var code = 'codigo';    
+    return [code];
+   
   };

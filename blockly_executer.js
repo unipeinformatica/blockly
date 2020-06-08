@@ -214,3 +214,18 @@ function execute() {
 // Load the interpreter now, and upon future changes.
 generateCodeAndLoadIntoInterpreter();
 workspace.addChangeListener(myUpdateFunction);
+
+Blockly.JavaScript.addReservedWords('posicion_cadena_caracteres');
+var posicion_cadena_caracteres = 0;
+
+function initVariables() {
+    posicion_cadena_caracteres = 0;
+}
+
+function leerCaracter() {
+    return document.getElementById("input_text").value.charAt(posicion_cadena_caracteres);
+}
+
+function avanzarCaracter() {
+    posicion_cadena_caracteres += 1;
+}
