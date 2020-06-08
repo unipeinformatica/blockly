@@ -87,8 +87,6 @@ function initApi(interpreter, globalObject) {
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
 
-    
-    // Add an API function for highlighting blocks.
     // Add an API function for highlighting blocks.
     var wrapper = function (id) {
         return workspace.highlightBlock(id);
@@ -115,14 +113,11 @@ function resetStepUi(clearOutput) {
 
 function generateCodeAndLoadIntoInterpreter() {
     // Generate JavaScript code and parse it.
-    Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-    Blockly.JavaScript.addReservedWords('highlightBlock');
     //para highlightear la linea por la que va
     Blockly.JavaScript.addReservedWords('latestCode')
     //para no tener loops
     window.LoopTrap = 1000;
     Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if(--window.LoopTrap == 0) throw "Infinite loop.";\n';
-    latestCode = Blockly.JavaScript.workspaceToCode(workspace);
     resetStepUi(true);
 }
 
@@ -199,6 +194,8 @@ function save() {
 }
 
 function execute() {
+    initVariables();
+    latestCode = Blockly.JavaScript.workspaceToCode(workspace);
     if (!myInterpreter) {
         initVariables();        
         // First statement of this code.

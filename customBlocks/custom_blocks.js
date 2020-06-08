@@ -20,14 +20,12 @@ Blockly.defineBlocksWithJsonArray([{
 ])
 
   Blockly.JavaScript['leer_caracter'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
     var code = 'leerCaracter()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
   
   };
 
   Blockly.JavaScript['avanzar_caracter'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
     var code = 'avanzarCaracter();';    
     return code;
    
