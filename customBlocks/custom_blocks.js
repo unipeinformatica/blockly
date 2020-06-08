@@ -16,15 +16,9 @@ Blockly.defineBlocksWithJsonArray([{
 
   Blockly.JavaScript['leer_caracter'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
-    var functionName = Blockly.JavaScript.provideFunction_(
-        'mostrarTexto',
-        [ 'function ' + Blockly.JavaScript.FUNCTION_NAME_PLACEHOLDER_ + '() {',
-          'var texto = '+ document.getElementById("input_text") +'.value',
-          ' return texto.charAt(0);',
-          '}']);
-    
-    var code = functionName + '()';
-    return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+    var code = '\'' + document.getElementById("input_text").value + '\'';    
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+   
   };
 
   function leerCaracter() {
