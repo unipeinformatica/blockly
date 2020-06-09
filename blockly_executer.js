@@ -83,6 +83,12 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'avanzarCaracter',
         interpreter.createNativeFunction(wrapper));
 
+    // Add an API function for the hayMasCaracteres() block.
+    var wrapper = function (text) {
+        return hayMasCaracteres();
+    };
+    interpreter.setProperty(globalObject, 'hayMasCaracteres',
+        interpreter.createNativeFunction(wrapper));
 
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
@@ -246,4 +252,8 @@ function leerCaracter() {
 
 function avanzarCaracter() {
     posicion_cadena_caracteres += 1;
+}
+
+function hayMasCaracteres() {
+    return document.getElementById("input_text").value.length > posicion_cadena_caracteres;
 }
