@@ -1,3 +1,5 @@
+Blockly.Blocks.sensores = { COLOUR: '#2ca5e2' };
+
 Blockly.defineBlocksWithJsonArray([{
     "type": "leer_caracter",
     "message0": "Leer caracter de entrada",
@@ -17,6 +19,15 @@ Blockly.defineBlocksWithJsonArray([{
     "tooltip": "Avanzar un caracter de entrada",
     "helpUrl": ""
   },
+  {
+    "type": "hay_mas_caracteres",
+    "message0": "¿Hay más caracteres en la entrada?",
+    "inputsInline": true,
+    "output": null,
+    "colour": Blockly.Blocks.sensores.COLOUR,
+    "tooltip": "Informa si hay o no más caracteres en la entrada",
+    "helpUrl": ""
+  }
 ])
 
   Blockly.JavaScript['leer_caracter'] = function(block) {
@@ -31,6 +42,12 @@ Blockly.defineBlocksWithJsonArray([{
    
   };
 
+  Blockly.JavaScript['hay_mas_caracteres'] = function(block) {
+    var code = 'hayMasCaracteres()';    
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+   
+  };
+
   Blockly.Python['leer_caracter'] = function(block) {
     // TODO
     
@@ -42,5 +59,12 @@ Blockly.defineBlocksWithJsonArray([{
     // TODO
     var code = 'codigo';    
     return code;
+   
+  };
+
+  Blockly.Python['hay_mas_caracteres'] = function(block) {
+    // TODO
+    var code = 'codigo';    
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
    
   };
