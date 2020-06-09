@@ -90,6 +90,13 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'hayMasCaracteres',
         interpreter.createNativeFunction(wrapper));
 
+    // Add an API function for the leerEntradaCompleta() block.
+    var wrapper = function (text) {
+        return leerEntradaCompleta();
+    };
+    interpreter.setProperty(globalObject, 'leerEntradaCompleta',
+        interpreter.createNativeFunction(wrapper));
+
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
 
@@ -256,4 +263,8 @@ function avanzarCaracter() {
 
 function hayMasCaracteres() {
     return document.getElementById("input_text").value.length > posicion_cadena_caracteres;
+}
+
+function leerEntradaCompleta() {
+    return document.getElementById("input_text").value;
 }
