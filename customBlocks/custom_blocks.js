@@ -1,4 +1,11 @@
 Blockly.Blocks.sensores = { COLOUR: '#2ca5e2' };
+Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = "Definir";
+delete Blockly.Blocks.procedures_ifreturn;
+
+//esta funcion se debe llamar para que no aparezcan las definiciones de funciones
+function noHayFunciones() {
+    delete Blockly.Blocks.procedures_defreturn;
+}
 
 Blockly.defineBlocksWithJsonArray([{
     "type": "leer_caracter",
