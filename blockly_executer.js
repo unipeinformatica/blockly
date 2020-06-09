@@ -53,7 +53,7 @@ function initApi(interpreter, globalObject) {
    // Add an API function for the alert() block, generated for "text_print" blocks.
     var wrapper = function (text) {
         text = text ? text.toString() : '';
-        outputArea.value = outputArea.value + '\n' + text;
+        outputArea.value = outputArea.value + text;
     };
     interpreter.setProperty(globalObject, 'alert',
         interpreter.createNativeFunction(wrapper));
