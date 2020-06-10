@@ -103,8 +103,6 @@
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
         <block type="text_print"></block>
-        <block type="leer_caracter"></block>
-        <block type="avanzar_caracter"></block>
     </category>
     <category name="Mis procedimientos" custom="PROCEDURE">
     </category>
@@ -121,6 +119,11 @@
 <!--El nombre de la actividad se usa para nombre de archivo también-->
 <script>
     setActividad("hola_mundo");
+</script>
+
+<!--Elimina la definición de funciones en "procedimientos"-->
+<script>
+    noHayFunciones()
 </script>
 
 </body>
