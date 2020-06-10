@@ -8,7 +8,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css" media="screen,projection"/>
     <!--UNIPE Style-->
-    <link rel="stylesheet" type="text/css" href="../unipe.css" />
+    <link rel="stylesheet" type="text/css" href="../unipe.css"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -20,14 +20,14 @@
     <script src="../javascript_compressed.js"></script>
     <script src="../msg/js/es.js"></script>
     <script src="../wait_block.js"></script>
-
-
+    <script src="../customBlocks/custom_blocks.js"></script>
     <style>
         input[type="file"] {
             display: none;
         }
     </style>
 </head>
+
 
 <body>
 <nav>
@@ -44,7 +44,6 @@
         </ul>
     </div>
 </nav>
-
 <div class="container">
     <div id="titulo_ejercicio">
         <h4>Copiando la Entrada</h4>
@@ -105,13 +104,17 @@
 <!--Opciones de ToolBox a mostrar en esta actividad-->
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
-        <block type="read_char"></block>
         <block type="text_print"></block>
+        <block type="leer_caracter"></block>
+        <block type="avanzar_caracter"></block>
     </category>
     <category name="Mis procedimientos" custom="PROCEDURE">
     </category>
     <category name="Valores">
         <block type="text"></block>
+    </category>
+    <category name="Sensores">
+        <block type="hay_mas_caracteres"></block>
     </category>
 </xml>
 
@@ -124,6 +127,12 @@
 <script>
     setActividad("copiando_la_entrada");
 </script>
+
+<!--Elimina la definición de funciones en "procedimientos"-->
+<script>
+    noHayFunciones()
+</script>
+
 
 </body>
 
