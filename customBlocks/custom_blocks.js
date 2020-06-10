@@ -1,5 +1,7 @@
 Blockly.Blocks.sensores = { COLOUR: '#2ca5e2' };
 Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = "Definir";
+//decidimos eliminar este bloque porque no queremos que les estudiantes
+//usen la mala práctica de retornar dentro de los if
 delete Blockly.Blocks.procedures_ifreturn;
 
 //esta funcion se debe llamar para que no aparezcan las definiciones de funciones
