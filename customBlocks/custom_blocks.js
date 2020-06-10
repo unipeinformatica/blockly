@@ -19,6 +19,15 @@ Blockly.defineBlocksWithJsonArray([{
     "helpUrl": ""
   },
   {
+    "type": "leer_entrada_completa",
+    "message0": "Leer texto de entrada",
+    "inputsInline": true,
+    "output": null,
+    "colour": 230,
+    "tooltip": "Leer texto de entrada",
+    "helpUrl": ""
+  },
+  {
     "type": "avanzar_caracter",
     "message0": "Avanzar caracter",
     "inputsInline": true,
@@ -57,6 +66,12 @@ Blockly.defineBlocksWithJsonArray([{
    
   };
 
+  Blockly.JavaScript['leer_entrada_completa'] = function(block) {
+    var code = 'leerEntradaCompleta()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  
+  };
+
   Blockly.Python['leer_caracter'] = function(block) {
     // TODO
     
@@ -74,6 +89,12 @@ Blockly.defineBlocksWithJsonArray([{
   Blockly.Python['hay_mas_caracteres'] = function(block) {
     // TODO
     var code = 'codigo';    
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+    return [code, Blockly.Python.ORDER_ATOMIC];
    
+  };
+
+  Blockly.Python['leer_entrada_completa'] = function(block) {
+    var code = 'leerEntradaCompleta()';
+    return [code, Blockly.Python.ORDER_ATOMIC];
+  
   };
