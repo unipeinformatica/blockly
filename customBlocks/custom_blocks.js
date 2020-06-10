@@ -1,4 +1,9 @@
+// Definición de colores sobre estilo Theme Classic que no se cambia
 Blockly.Blocks.sensores = { COLOUR: '#2ca5e2' };
+Blockly.Blocks.primitivas = { COLOUR: '#4B6CD4'};
+Blockly.Themes.Classic.blockStyles.loop_blocks.colourPrimary = "#ee7d16";
+Blockly.Themes.Classic.blockStyles.logic_blocks.colourPrimary = "#ee7d16";
+
 Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = "Definir";
 //decidimos eliminar este bloque porque no queremos que les estudiantes
 //usen la mala práctica de retornar dentro de los if
@@ -14,7 +19,7 @@ Blockly.defineBlocksWithJsonArray([{
     "message0": "Leer caracter de entrada",
     "inputsInline": true,
     "output": null,
-    "colour": 230,
+    "colour": Blockly.Blocks.primitivas.COLOUR,
     "tooltip": "Leer caracter de entrada",
     "helpUrl": ""
   },
@@ -23,7 +28,7 @@ Blockly.defineBlocksWithJsonArray([{
     "message0": "Leer texto de entrada",
     "inputsInline": true,
     "output": null,
-    "colour": 230,
+    "colour": Blockly.Blocks.primitivas.COLOUR,
     "tooltip": "Leer texto de entrada",
     "helpUrl": ""
   },
@@ -33,7 +38,7 @@ Blockly.defineBlocksWithJsonArray([{
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 230,
+    "colour": Blockly.Blocks.primitivas.COLOUR,
     "tooltip": "Avanzar un caracter de entrada",
     "helpUrl": ""
   },
@@ -42,7 +47,7 @@ Blockly.defineBlocksWithJsonArray([{
     "message0": "Obtener caracter",
     "inputsInline": true,
     "output": null,
-    "colour": 230,
+    "colour": Blockly.Blocks.primitivas.COLOUR,
     "tooltip": "Leer y avanzar caracter de entrada",
     "helpUrl": ""
   },
