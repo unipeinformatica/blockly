@@ -38,6 +38,15 @@ Blockly.defineBlocksWithJsonArray([{
     "helpUrl": ""
   },
   {
+    "type": "obtener_caracter",
+    "message0": "Obtener caracter",
+    "inputsInline": true,
+    "output": null,
+    "colour": 230,
+    "tooltip": "Leer y avanzar caracter de entrada",
+    "helpUrl": ""
+  },
+  {
     "type": "hay_mas_caracteres",
     "message0": "¿Hay más caracteres en la entrada?",
     "inputsInline": true,
@@ -51,50 +60,63 @@ Blockly.defineBlocksWithJsonArray([{
   Blockly.JavaScript['leer_caracter'] = function(block) {
     var code = 'leerCaracter()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  
+
   };
 
   Blockly.JavaScript['avanzar_caracter'] = function(block) {
-    var code = 'avanzarCaracter();';    
+    var code = 'avanzarCaracter();';
     return code;
-   
+
   };
 
   Blockly.JavaScript['hay_mas_caracteres'] = function(block) {
-    var code = 'hayMasCaracteres()';    
+    var code = 'hayMasCaracteres()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
-   
+
   };
 
   Blockly.JavaScript['leer_entrada_completa'] = function(block) {
     var code = 'leerEntradaCompleta()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  
+
   };
+
+  Blockly.JavaScript['obtener_caracter'] = function(block) {
+    var code = 'obtenerCaracter()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
 
   Blockly.Python['leer_caracter'] = function(block) {
     // TODO
-    
+
     var code = '"manola"';
     return [code, Blockly.Python.ORDER_ATOMIC];
   };
 
   Blockly.Python['avanzar_caracter'] = function(block) {
     // TODO
-    var code = 'codigo';    
+    var code = 'codigo';
     return code;
-   
+
   };
 
   Blockly.Python['hay_mas_caracteres'] = function(block) {
     // TODO
-    var code = 'codigo';    
+    var code = 'codigo';
     return [code, Blockly.Python.ORDER_ATOMIC];
-   
+
   };
 
   Blockly.Python['leer_entrada_completa'] = function(block) {
     var code = 'leerEntradaCompleta()';
     return [code, Blockly.Python.ORDER_ATOMIC];
-  
+
   };
+
+  Blockly.Python['obtener_caracter'] = function(block) {
+      // TODO: revisar que luego imprima el código correspondiente
+    var codigo_python = 'caracter = input_text.get(posicion_cadena_caracteres) ' +
+        '\n posicion_cadena_caracteres +=1 \n return caracter';
+    return codigo_python;
+
+};

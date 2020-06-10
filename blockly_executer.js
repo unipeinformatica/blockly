@@ -49,7 +49,7 @@ var runButton = document.getElementById('execute');
 var latestCode = '';
 var runner;
 function initApi(interpreter, globalObject) {
-    
+
    // Add an API function for the alert() block, generated for "text_print" blocks.
     var wrapper = function (text) {
         text = text ? text.toString() : '';
@@ -95,6 +95,13 @@ function initApi(interpreter, globalObject) {
         return leerEntradaCompleta();
     };
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
+        interpreter.createNativeFunction(wrapper));
+
+    // Add an API function for the obtenerCaracter() block.
+    var wrapper = function (text) {
+        return obtenerCaracter();
+    };
+    interpreter.setProperty(globalObject, 'obtenerCaracter',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API for the wait block.  See wait_block.js
@@ -176,7 +183,7 @@ function cargarSolucion(contenido) {
     } catch (e) {
         console.error(e);
         throw "Lo siento, este archivo no tiene una solución de UNIPE Blockly.";
-    }   
+    }
 
     let errors = [];
 
@@ -210,7 +217,7 @@ function execute() {
     initVariables();
     latestCode = Blockly.JavaScript.workspaceToCode(workspace);
     if (!myInterpreter) {
-        initVariables();        
+        initVariables();
         // First statement of this code.
         // Clear the program output.
         resetStepUi(true);
@@ -267,4 +274,10 @@ function hayMasCaracteres() {
 
 function leerEntradaCompleta() {
     return document.getElementById("input_text").value;
+}
+
+function obtenerCaracter() {
+    var caracter = document.getElementById("input_text").value.charAt(posicion_cadena_caracteres);
+    posicion_cadena_caracteres += 1;
+    return caracter;
 }
