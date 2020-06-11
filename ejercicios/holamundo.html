@@ -105,17 +105,25 @@
     <category name="Primitivas">
         <block type="text_print"></block>
     </category>
-    <category name="Mis procedimientos" custom="PROCEDURE">
+    <category name="Mis procedimientos" custom="MIS_PROCEDIMIENTOS">
+    </category>
+    <category name="Procedimientos">
+        <block type="procedures_defnoreturn"></block>
     </category>
     <category name="Valores">
         <block type="text"></block>
     </category>
+    <category name="Repeticiones">
+        <block type="controls_repeat_ext"></block>
+        <block type="controls_whileUntil"></block>
+    </category>
+    <category name="Sensores">
+        <block type="hay_mas_caracteres"></block>
+    </category>
 </xml>
 
 <!--Genera el toolbox basado en el XML anterior-->
-<script
-        src="../blockly_executer.js">
-</script>
+<script src="../blockly_executer.js"></script>
 
 <!--El nombre de la actividad se usa para nombre de archivo también-->
 <script>
