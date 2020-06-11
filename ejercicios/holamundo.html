@@ -49,7 +49,8 @@
     </div>
     <div id="enunciado" class="col s12">
         <div class="enunciado">
-            <p>Al aprender un nuevo lenguaje de programación usualmente empezamos por lo que llamamos “¡Hola Mundo!”.</p>
+            <p>Al aprender un nuevo lenguaje de programación usualmente empezamos por lo que llamamos “¡Hola
+                Mundo!”.</p>
             <p>Es un programa que sólo imprime “¡Hola Mundo!” en la salida.</p>
             <p>¡A programar!</p>
         </div>
@@ -103,9 +104,6 @@
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
         <block type="text_print"></block>
-        <block type="leer_caracter"></block>
-        <block type="avanzar_caracter"></block>
-        <block type="leer_entrada_completa"></block>
     </category>
     <category name="Mis procedimientos" custom="MIS_PROCEDIMIENTOS">
     </category>
@@ -130,6 +128,11 @@
 <!--El nombre de la actividad se usa para nombre de archivo también-->
 <script>
     setActividad("hola_mundo");
+</script>
+
+<!--Elimina la definición de funciones en "procedimientos"-->
+<script>
+    noHayFunciones()
 </script>
 
 </body>
