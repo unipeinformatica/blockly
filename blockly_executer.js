@@ -87,6 +87,26 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'avanzarCaracter',
         interpreter.createNativeFunction(wrapper));
 
+    // Add an API function for the hayMasCaracteres() block.
+    var wrapper = function (text) {
+        return hayMasCaracteres();
+    };
+    interpreter.setProperty(globalObject, 'hayMasCaracteres',
+        interpreter.createNativeFunction(wrapper));
+
+    // Add an API function for the leerEntradaCompleta() block.
+    var wrapper = function (text) {
+        return leerEntradaCompleta();
+    };
+    interpreter.setProperty(globalObject, 'leerEntradaCompleta',
+        interpreter.createNativeFunction(wrapper));
+
+    // Add an API function for the obtenerCaracter() block.
+    var wrapper = function (text) {
+        return obtenerCaracter();
+    };
+    interpreter.setProperty(globalObject, 'obtenerCaracter',
+        interpreter.createNativeFunction(wrapper));
 
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
@@ -250,6 +270,20 @@ function leerCaracter() {
 
 function avanzarCaracter() {
     posicion_cadena_caracteres += 1;
+}
+
+function hayMasCaracteres() {
+    return document.getElementById("input_text").value.length > posicion_cadena_caracteres;
+}
+
+function leerEntradaCompleta() {
+    return document.getElementById("input_text").value;
+}
+
+function obtenerCaracter() {
+    var caracter = document.getElementById("input_text").value.charAt(posicion_cadena_caracteres);
+    posicion_cadena_caracteres += 1;
+    return caracter;
 }
 
 /**

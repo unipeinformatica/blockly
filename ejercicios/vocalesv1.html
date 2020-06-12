@@ -46,12 +46,13 @@
 </nav>
 <div class="container">
     <div id="titulo_ejercicio">
-        <h4>Copiando la Entrada</h4>
+        <h4>Vocales V1</h4>
     </div>
     <div id="enunciado" class="col s12">
         <div class="enunciado">
-            <p>En la entrada pueden escribir lo que ustedes gusten.</p>
-            <p>Su programa al ejecutar, debe copiar dicha entrada a la salida, sin modificaciones.</p>
+            <p>En la entrada podremos escribir un texto libremente en minúsculas, sin tildes.</p>
+            <p>Nuestro programa deberá leer dicho texto y cada vez que encuentre una vocal, deberá imprimir en la salida “Vi una vocal”.</p>
+            <p>Por ejemplo: “murcielago”, imprimirá 5 veces: “Vi una vocal”</p>
             <p><em>Recordar revisar qué primitivas tienen disponibles.</em></p>
             <p>¡A programar!</p>
         </div>
@@ -110,6 +111,8 @@
     </category>
     <category name="Mis procedimientos" custom="PROCEDURE">
     </category>
+    <category name="Variables" custom="VARIABLE">
+    </category>
     <category name="Repeticiones">
         <block type="controls_repeat_ext">
             <value name="TIMES">
@@ -119,6 +122,18 @@
             </value>
         </block>
         <block type="controls_whileUntil"></block>
+    </category>
+    <category name="Alternativas">
+        <block type="controls_if"></block>
+        <block type="controls_if">
+          <mutation else="1"></mutation>
+        </block>
+    </category>
+    <category name="Operadores lógicos">
+        <block type="logic_compare"></block>
+    </category>
+    <category name="Conectivas lógicas">
+        <block type="logic_operation"></block>
     </category>
     <category name="Valores">
         <block type="text"></block>
@@ -138,14 +153,8 @@
 
 <!--El nombre de la actividad se usa para nombre de archivo también-->
 <script>
-    setActividad("copiando_la_entrada");
+    setActividad("vocalesv1");
 </script>
-
-<!--Elimina la definición de funciones en "procedimientos"-->
-<script>
-    noHayFunciones()
-</script>
-
 
 </body>
 
