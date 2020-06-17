@@ -296,6 +296,7 @@ function leerEntradaCompleta() {
  */
 function cambiarColorTexto(unColor) {
     color_texto = unColor;
+}
 
 /**
  * Función de gestión para la categoría "MIS_FUNCIONES" del Toolbox.
