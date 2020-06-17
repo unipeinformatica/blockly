@@ -60,7 +60,7 @@ function initApi(interpreter, globalObject) {
     // Add an API function for the alert() block, generated for "text_print" blocks.
     var wrapper = function (text) {
         text = text ? text.toString() : '';
-        outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + text + "</span>";
+        outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + text + "</span> <br>";
     };
     interpreter.setProperty(globalObject, 'alert',
         interpreter.createNativeFunction(wrapper));
@@ -247,7 +247,7 @@ function execute() {
                         setTimeout(runner, 10);
                     } else {
                         // Program is complete.
-                        outputArea.innerHTML += '\n\n<< Program complete >>';
+                        outputArea.innerHTML += '<br><br><< Program complete >>';
                         resetInterpreter();
                         resetStepUi(false);
                     }
@@ -285,6 +285,10 @@ function leerEntradaCompleta() {
     return document.getElementById("input_text").value;
 }
 
+/**
+ *
+ * @param unColor es un texto de la forma #000000
+ */
 function cambiarColorTexto(unColor) {
     color_texto = unColor;
 }
