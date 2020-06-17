@@ -89,6 +89,20 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'avanzarCaracter',
         interpreter.createNativeFunction(wrapper));
 
+    // Add an API function for the hayMasCaracteres() block.
+    var wrapper = function (text) {
+        return hayMasCaracteres();
+    };
+    interpreter.setProperty(globalObject, 'hayMasCaracteres',
+        interpreter.createNativeFunction(wrapper));
+
+    // Add an API function for the leerEntradaCompleta() block.
+    var wrapper = function (text) {
+        return leerEntradaCompleta();
+    };
+    interpreter.setProperty(globalObject, 'leerEntradaCompleta',
+        interpreter.createNativeFunction(wrapper));
+
 
     // Add an API function for the cambiarColorTexto() block.
     var wrapper = function (text) {
