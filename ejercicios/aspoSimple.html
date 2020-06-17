@@ -49,7 +49,8 @@
     </div>
     <div id="enunciado" class="col s12">
         <div class="enunciado">
-            <p>En Argentina se realizó un Aislamiento social preventivo y obligatorio. Dependiendo tu provincia tuvo distintas duraciones.</p>
+            <p>En Argentina se realizó un Aislamiento social preventivo y obligatorio. Dependiendo tu provincia tuvo
+                distintas duraciones.</p>
             <p>Vamos a preguntar 40 veces al presidente si ya terminó la cuarentena.</p>
             <p>No hay ninguna entrada, solo tendremos una salida.</p>
 
@@ -110,7 +111,12 @@
 <!--Opciones de ToolBox a mostrar en esta actividad-->
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
-        <block type="text_print"></block>
+        <block type="text_print">
+            <value name="TEXT">
+                <block type="text">
+                </block>
+            </value>
+        </block>
         <block type="leer_caracter"></block>
         <block type="avanzar_caracter"></block>
     </category>
@@ -121,10 +127,18 @@
     </category>
     <category name="Valores">
         <block type="text"></block>
-        <block type="number"></block>
+        <block type="math_number">
+            <field name="NUM">10</field>
+        </block>
     </category>
     <category name="Repeticiones">
-        <block type="controls_repeat_ext"></block>
+        <block type="controls_repeat_ext">
+            <value name="TIMES">
+                <block type="math_number">
+                    <field name="NUM">10</field>
+                </block>
+            </value>
+        </block>
         <block type="controls_whileUntil"></block>
     </category>
     <category name="Sensores">
