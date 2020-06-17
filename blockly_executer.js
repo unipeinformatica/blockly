@@ -1,6 +1,9 @@
 var MOSTRAR_CODIGO = false;
 var VERSION_CODIGO = 1.0;
 var actividad = ""
+/// Tipos de rutinas
+const RUTINAS = {FUNCION: 'return', 
+                 PROCEDIMIENTO: 'noreturn'};
 
 Blockly.JavaScript.addReservedWords('posicion_cadena_caracteres');
 var posicion_cadena_caracteres = 0;
@@ -30,6 +33,8 @@ var workspace = Blockly.inject('blocklyDiv',
         comments: false
     });
 
+// Registra la función generadora de bloques para la categoría MIS_FUNCIONES
+workspace.registerToolboxCategoryCallback('MIS_FUNCIONES', misFuncionesCallback);
 // Registra la función generadora de bloques para la categoría MIS_PROCEDIMIENTOS
 workspace.registerToolboxCategoryCallback('MIS_PROCEDIMIENTOS', misProcedimientosCallback);
 
@@ -291,22 +296,47 @@ function leerEntradaCompleta() {
  */
 function cambiarColorTexto(unColor) {
     color_texto = unColor;
+
+/**
+ * Función de gestión para la categoría "MIS_FUNCIONES" del Toolbox.
+ * @param {!Blockly.Workspace} Espacio de trabajo de Blockly.
+ * @return {!Array.<!Element>} Lista con bloques de tipo "llamada a función" (formato XML).
+ */
+function misFuncionesCallback(workspace) {
+    return generarBloquesFuncionProcedimiento(workspace, RUTINAS.FUNCION);
 }
 
 /**
- * Genera, al vuelo, los bloques de llamada para cada procedimiento definido en el workspace.
+ * Función de gestión para la categoría "MIS_PROCEDIMIENTOS" del Toolbox.
  * @param {!Blockly.Workspace} Espacio de trabajo de Blockly.
  * @return {!Array.<!Element>} Lista con bloques de tipo "llamada a procedimiento" (formato XML).
  */
 function misProcedimientosCallback(workspace) {
+    return generarBloquesFuncionProcedimiento(workspace, RUTINAS.PROCEDIMIENTO);
+}
+
+/**
+ * Genera, al vuelo, los bloques de llamada para cada función/procedimiento definido en el workspace.
+ * @param {!Blockly.Workspace} Espacio de trabajo de Blockly.
+ * @return {!Array.<!Element>} Lista con bloques de tipo "llamada a función/procedimiento" (formato XML).
+ */
+function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
     var xmlList = [];
-    var procedureDefs = workspace.getBlocksByType('procedures_defnoreturn', true);
-    for (var index in procedureDefs) {
-        var blockText = '<block type="procedures_callnoreturn">' +
-            '<field name="NAME">' + procedureDefs[index].getFieldValue('NAME') + '</field>' +
-            '</block>';
+    var procedureDefs = workspace.getBlocksByType('procedures_def' + tipoRutina, true);
+    for (var procIdx in procedureDefs){
+        var blockText = '<block type="procedures_call' + tipoRutina + '">' +
+                        '<field name="NAME">' + procedureDefs[procIdx].getFieldValue('NAME') + '</field>';
+        if (procedureDefs[procIdx].arguments_.length > 0){
+            blockText += '<mutation>';
+            for (var argIdx in procedureDefs[procIdx].arguments_){
+                blockText += '<arg name="' + procedureDefs[procIdx].arguments_[argIdx] + '"></arg>';
+            }        
+            blockText += '</mutation>';
+        }    
+        blockText += '</block>';
         var block = Blockly.Xml.textToDom(blockText);
         xmlList.push(block);
     }
     return xmlList;
 };
+
