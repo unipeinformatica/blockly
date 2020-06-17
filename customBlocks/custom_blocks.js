@@ -103,8 +103,7 @@ Blockly.JavaScript['obtener_caracter'] = function (block) {
 
 Blockly.JavaScript['cambiar_color_texto'] = function (block) {
     var colour = block.getFieldValue('COLOUR');
-    var test_color = "#00FF00"
-    var code = 'cambiarColorTexto(' + test_color + ')';
+    var code = 'cambiarColorTexto("' + colour + '");';
     return code;
 
 };

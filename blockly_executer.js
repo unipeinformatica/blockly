@@ -60,7 +60,7 @@ function initApi(interpreter, globalObject) {
     // Add an API function for the alert() block, generated for "text_print" blocks.
     var wrapper = function (text) {
         text = text ? text.toString() : '';
-        outputArea.innerHTML = outputArea.innerHTML + "\n" + "<span style='color:" + color_texto + "'>" + text + "</span>";
+        outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + text + "</span>";
     };
     interpreter.setProperty(globalObject, 'alert',
         interpreter.createNativeFunction(wrapper));
@@ -77,28 +77,28 @@ function initApi(interpreter, globalObject) {
     Blockly.document = window.document;
 
     // Add an API function for the leerCaracter() block.
-    var wrapper = function (text) {
+    var wrapper = function () {
         return leerCaracter();
     };
     interpreter.setProperty(globalObject, 'leerCaracter',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the avanzarCaracter() block.
-    var wrapper = function (text) {
+    var wrapper = function () {
         return avanzarCaracter();
     };
     interpreter.setProperty(globalObject, 'avanzarCaracter',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the hayMasCaracteres() block.
-    var wrapper = function (text) {
+    var wrapper = function () {
         return hayMasCaracteres();
     };
     interpreter.setProperty(globalObject, 'hayMasCaracteres',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the leerEntradaCompleta() block.
-    var wrapper = function (text) {
+    var wrapper = function () {
         return leerEntradaCompleta();
     };
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
@@ -106,8 +106,8 @@ function initApi(interpreter, globalObject) {
 
 
     // Add an API function for the cambiarColorTexto() block.
-    var wrapper = function (text) {
-        return cambiarColorTexto();
+    var wrapper = function (color) {
+        return cambiarColorTexto(color);
     };
     interpreter.setProperty(globalObject, 'cambiarColorTexto',
         interpreter.createNativeFunction(wrapper));
