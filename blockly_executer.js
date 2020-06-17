@@ -65,7 +65,7 @@ function initApi(interpreter, globalObject) {
     // Add an API function for the alert() block, generated for "text_print" blocks.
     var wrapper = function (text) {
         text = text ? text.toString() : '';
-        outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + text + "</span> <br>";
+        outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + text + "</span>";
     };
     interpreter.setProperty(globalObject, 'alert',
         interpreter.createNativeFunction(wrapper));
@@ -252,7 +252,7 @@ function execute() {
                         setTimeout(runner, 10);
                     } else {
                         // Program is complete.
-                        outputArea.innerHTML += '<br><br><< Program complete >>';
+                        outputArea.innerHTML += '<em><br><br> << Terminó de ejecutar >> </em>';
                         resetInterpreter();
                         resetStepUi(false);
                     }
