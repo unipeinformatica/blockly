@@ -17,24 +17,25 @@ var workspace = Blockly.inject('blocklyDiv',
     {
         toolbox: document.getElementById('toolbox'),
         zoom:
-        {
-            controls: true,
-            wheel: true,
-            startScale: 1.0,
-            maxScale: 3,
-            minScale: 0.3,
-            scaleSpeed: 1.2
-        },
+            {
+                controls: true,
+                wheel: true,
+                startScale: 1.0,
+                maxScale: 3,
+                minScale: 0.3,
+                scaleSpeed: 1.2
+            },
         trashcan: true,
         comments: false
     });
 
-    // Registra la función generadora de bloques para la categoría MIS_PROCEDIMIENTOS
-    workspace.registerToolboxCategoryCallback('MIS_PROCEDIMIENTOS', misProcedimientosCallback);
+// Registra la función generadora de bloques para la categoría MIS_PROCEDIMIENTOS
+workspace.registerToolboxCategoryCallback('MIS_PROCEDIMIENTOS', misProcedimientosCallback);
 
 
 // Exit is used to signal the end of a script.
 Blockly.JavaScript.addReservedWords('exit');
+
 function myUpdateFunction(event) {
     var code = Blockly.Python.workspaceToCode(workspace);
     document.getElementById('codigo_python').value = code;
@@ -52,9 +53,10 @@ var highlightPause = false;
 var runButton = document.getElementById('execute');
 var latestCode = '';
 var runner;
+
 function initApi(interpreter, globalObject) {
-    
-   // Add an API function for the alert() block, generated for "text_print" blocks.
+
+    // Add an API function for the alert() block, generated for "text_print" blocks.
     var wrapper = function (text) {
         text = text ? text.toString() : '';
         outputArea.value = outputArea.value + '\n' + text;
@@ -69,9 +71,9 @@ function initApi(interpreter, globalObject) {
     };
     interpreter.setProperty(globalObject, 'prompt',
         interpreter.createNativeFunction(wrapper));
-        Blockly.DOMParser = window.DOMParser;
-        Blockly.Element   = window.Element;
-        Blockly.document  = window.document;
+    Blockly.DOMParser = window.DOMParser;
+    Blockly.Element = window.Element;
+    Blockly.document = window.document;
 
     // Add an API function for the leerCaracter() block.
     var wrapper = function (text) {
@@ -87,6 +89,13 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'avanzarCaracter',
         interpreter.createNativeFunction(wrapper));
 
+
+    // Add an API function for the cambiarColorTexto() block.
+    var wrapper = function (text) {
+        return cambiarColorTexto();
+    };
+    interpreter.setProperty(globalObject, 'cambiarColorTexto',
+        interpreter.createNativeFunction(wrapper));
 
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
@@ -167,7 +176,7 @@ function cargarSolucion(contenido) {
     } catch (e) {
         console.error(e);
         throw "Lo siento, este archivo no tiene una solución de UNIPE Blockly.";
-    }   
+    }
 
     let errors = [];
 
@@ -192,7 +201,7 @@ function save() {
     };
     var a = document.createElement("a");
     a.download = actividad + '.spbq';
-    a.href = URL.createObjectURL(new Blob([JSON.stringify(contenido)], { type: 'application/octet-stream' }));
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(contenido)], {type: 'application/octet-stream'}));
     a.type = 'application/octet-stream';
     a.click();
 }
@@ -201,7 +210,7 @@ function execute() {
     initVariables();
     latestCode = Blockly.JavaScript.workspaceToCode(workspace);
     if (!myInterpreter) {
-        initVariables();        
+        initVariables();
         // First statement of this code.
         // Clear the program output.
         resetStepUi(true);
@@ -234,10 +243,10 @@ function execute() {
         return;
     }
 }
+
 // Load the interpreter now, and upon future changes.
 generateCodeAndLoadIntoInterpreter();
 workspace.addChangeListener(myUpdateFunction);
-
 
 
 function initVariables() {
@@ -252,6 +261,18 @@ function avanzarCaracter() {
     posicion_cadena_caracteres += 1;
 }
 
+function hayMasCaracteres() {
+    return document.getElementById("input_text").value.length > posicion_cadena_caracteres;
+}
+
+function leerEntradaCompleta() {
+    return document.getElementById("input_text").value;
+}
+
+function cambiarColorTexto() {
+    return document.getElementById("input_text").value;
+}
+
 /**
  * Genera, al vuelo, los bloques de llamada para cada procedimiento definido en el workspace.
  * @param {!Blockly.Workspace} Espacio de trabajo de Blockly.
@@ -260,10 +281,10 @@ function avanzarCaracter() {
 function misProcedimientosCallback(workspace) {
     var xmlList = [];
     var procedureDefs = workspace.getBlocksByType('procedures_defnoreturn', true);
-    for (var index in procedureDefs){
+    for (var index in procedureDefs) {
         var blockText = '<block type="procedures_callnoreturn">' +
-                        '<field name="NAME">' + procedureDefs[index].getFieldValue('NAME') + '</field>' +
-                        '</block>';
+            '<field name="NAME">' + procedureDefs[index].getFieldValue('NAME') + '</field>' +
+            '</block>';
         var block = Blockly.Xml.textToDom(blockText);
         xmlList.push(block);
     }
