@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--Import Google Icon Font-->
@@ -20,8 +19,7 @@
     <script src="../javascript_compressed.js"></script>
     <script src="../msg/js/es.js"></script>
     <script src="../wait_block.js"></script>
-
-
+    <script src="../customBlocks/custom_blocks.js"></script>
     <style>
         input[type="file"] {
             display: none;
@@ -91,7 +89,7 @@
                 </div>
                 <div class="section" id="output">
                     <h6>Salida</h6>
-                    <textarea id="output_text" style="min-height: 100px; max-width: 100%"></textarea>
+                    <p id="output_text" readonly style="min-height: 100px; max-width: 100%"></p>
                 </div>
             </div>
             <div class="col s10 m10 l10" style="display: flex; height: 480px;">
@@ -109,24 +107,39 @@
 <!--Opciones de ToolBox a mostrar en esta actividad-->
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
-        <block type="read_char"></block>
         <block type="text_print"></block>
+        <block type="leer_caracter"></block>
+        <block type="avanzar_caracter"></block>
+        <block type="cambiar_color_texto"></block>
     </category>
-    <category name="Mis procedimientos" custom="PROCEDURE">
+    <category name="Mis procedimientos" custom="MIS_PROCEDIMIENTOS">
+    </category>
+    <category name="Procedimientos">
+        <block type="procedures_defnoreturn"></block>
     </category>
     <category name="Valores">
         <block type="text"></block>
     </category>
+    <category name="Repeticiones">
+        <block type="controls_repeat_ext"></block>
+        <block type="controls_whileUntil"></block>
+    </category>
+    <category name="Sensores">
+        <block type="hay_mas_caracteres"></block>
+    </category>
 </xml>
 
 <!--Genera el toolbox basado en el XML anterior-->
-<script
-        src="../blockly_executer.js">
-</script>
+<script src="../blockly_executer.js"></script>
 
 <!--El nombre de la actividad se usa para nombre de archivo también-->
 <script>
     setActividad("texto_a_color_v1");
+</script>
+
+<!--Elimina la definición de funciones en "procedimientos"-->
+<script>
+    noHayFunciones()
 </script>
 
 </body>

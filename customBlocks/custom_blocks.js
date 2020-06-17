@@ -1,6 +1,6 @@
 // Definición de colores sobre estilo Theme Classic que no se cambia
-Blockly.Blocks.sensores = { COLOUR: '#2ca5e2' };
-Blockly.Blocks.primitivas = { COLOUR: '#4B6CD4'};
+Blockly.Blocks.sensores = {COLOUR: '#2ca5e2'};
+Blockly.Blocks.primitivas = {COLOUR: '#4B6CD4'};
 Blockly.Themes.Classic.blockStyles.loop_blocks.colourPrimary = "#ee7d16";
 Blockly.Themes.Classic.blockStyles.logic_blocks.colourPrimary = "#ee7d16";
 
@@ -55,12 +55,18 @@ Blockly.defineBlocksWithJsonArray([
     },
     {
         "type": "cambiar_color_texto",
-        "message0": "Cambiar color de texto",
+        "message0": "colour: %1",
+        "args0": [
+            {
+                "type": "field_colour",
+                "name": "COLOUR",
+                "colour": "#ff4040"
+            }
+        ],
         "previousStatement": null,
         "nextStatement": null,
         "inputsInline": true,
-        "output": null,
-        "colour": Blockly.Blocks.sensores.COLOUR,
+        "colour": Blockly.Blocks.primitivas.COLOUR,
         "tooltip": "Cambia el color de texto de la salida",
         "helpUrl": ""
     }
@@ -90,18 +96,20 @@ Blockly.JavaScript['leer_entrada_completa'] = function (block) {
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-  Blockly.JavaScript['obtener_caracter'] = function(block) {
+Blockly.JavaScript['obtener_caracter'] = function (block) {
     var code = 'obtenerCaracter()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['cambiar_color_texto'] = function (block) {
-    var code = 'cambiarColorTexto()';
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+    var colour = block.getFieldValue('COLOUR');
+    var test_color = "#00FF00"
+    var code = 'cambiarColorTexto(' + test_color + ')';
+    return code;
 
 };
 
-  Blockly.Python['leer_caracter'] = function(block) {
+Blockly.Python['leer_caracter'] = function (block) {
 
     // TODO
 
@@ -126,8 +134,8 @@ Blockly.Python['leer_entrada_completa'] = function (block) {
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
-  Blockly.Python['obtener_caracter'] = function(block) {
-      // TODO: revisar que luego imprima el código correspondiente
+Blockly.Python['obtener_caracter'] = function (block) {
+    // TODO: revisar que luego imprima el código correspondiente
     var codigo_python = 'caracter = input_text.get(posicion_cadena_caracteres) ' +
         '\n posicion_cadena_caracteres +=1 \n return caracter';
     return codigo_python;
@@ -136,6 +144,6 @@ Blockly.Python['leer_entrada_completa'] = function (block) {
 
 Blockly.Python['cambiar_color_texto'] = function (block) {
     var code = 'cambiarColorTexto()';
-    return [code, Blockly.Python.ORDER_ATOMIC];
+    return code;
 
 };

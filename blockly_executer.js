@@ -4,6 +4,7 @@ var actividad = ""
 
 Blockly.JavaScript.addReservedWords('posicion_cadena_caracteres');
 var posicion_cadena_caracteres = 0;
+var color_texto = "#000000";
 
 function setActividad(_actividad) {
     actividad = _actividad;
@@ -59,7 +60,7 @@ function initApi(interpreter, globalObject) {
     // Add an API function for the alert() block, generated for "text_print" blocks.
     var wrapper = function (text) {
         text = text ? text.toString() : '';
-        outputArea.value = outputArea.value + '\n' + text;
+        outputArea.innerHTML = outputArea.innerHTML + "\n" + "<span style='color:" + color_texto + "'>" + text + "</span>";
     };
     interpreter.setProperty(globalObject, 'alert',
         interpreter.createNativeFunction(wrapper));
@@ -134,7 +135,7 @@ function resetStepUi(clearOutput) {
     highlightPause = false;
     runButton.disabled = '';
     if (clearOutput) {
-        outputArea.value = '';
+        outputArea.innerHTML = '';
     }
 }
 
@@ -246,7 +247,7 @@ function execute() {
                         setTimeout(runner, 10);
                     } else {
                         // Program is complete.
-                        outputArea.value += '\n\n<< Program complete >>';
+                        outputArea.innerHTML += '\n\n<< Program complete >>';
                         resetInterpreter();
                         resetStepUi(false);
                     }
@@ -265,6 +266,7 @@ workspace.addChangeListener(myUpdateFunction);
 
 function initVariables() {
     posicion_cadena_caracteres = 0;
+    color_texto = "#000000";
 }
 
 function leerCaracter() {
@@ -283,8 +285,8 @@ function leerEntradaCompleta() {
     return document.getElementById("input_text").value;
 }
 
-function cambiarColorTexto() {
-    return document.getElementById("input_text").value;
+function cambiarColorTexto(unColor) {
+    color_texto = unColor;
 }
 
 /**
