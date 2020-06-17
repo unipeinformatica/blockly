@@ -257,31 +257,7 @@ function avanzarCaracter() {
     posicion_cadena_caracteres += 1;
 }
 
-/**
- * Genera, al vuelo, los bloques de llamada para cada procedimiento definido en el workspace.
- * @param {!Blockly.Workspace} Espacio de trabajo de Blockly.
- * @return {!Array.<!Element>} Lista con bloques de tipo "llamada a procedimiento" (formato XML).
- */
-/*
-function misProcedimientosCallback(workspace) {
-    var xmlList = [];
-    var procedureDefs = workspace.getBlocksByType('procedures_defnoreturn', true);
-    for (var procIdx in procedureDefs){
-        var blockText = '<block type="procedures_callnoreturn">' +
-                        '<field name="NAME">' + procedureDefs[procIdx].getFieldValue('NAME') + '</field>';
-        if (procedureDefs[procIdx].arguments_.length > 0){
-            blockText += '<mutation>';
-            for (var argIdx in procedureDefs[procIdx].arguments_){
-                blockText += '<arg name="' + procedureDefs[procIdx].arguments_[argIdx] + '"></arg>';
-            }        
-            blockText += '</mutation>';
-        }    
-        blockText += '</block>';
-        var block = Blockly.Xml.textToDom(blockText);
-        xmlList.push(block);
-    }
-    return xmlList;
-};
+
 /**
  * Función de gestión para la categoría "MIS_FUNCIONES" del Toolbox.
  * @param {!Blockly.Workspace} Espacio de trabajo de Blockly.
