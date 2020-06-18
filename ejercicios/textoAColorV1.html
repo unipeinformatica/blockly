@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--Import Google Icon Font-->
@@ -28,7 +27,6 @@
     </style>
 </head>
 
-
 <body>
 <nav>
     <div class="nav-wrapper">
@@ -44,16 +42,20 @@
         </ul>
     </div>
 </nav>
+
 <div class="container">
     <div id="titulo_ejercicio">
-        <h4>Vocales V1</h4>
+        <h4>Texto a Color (v1)</h4>
     </div>
     <div id="enunciado" class="col s12">
         <div class="enunciado">
-            <p>En la entrada podremos escribir un texto libremente en minúsculas, sin tildes.</p>
-            <p>Nuestro programa deberá leer dicho texto y cada vez que encuentre una vocal, deberá imprimir en la salida “Vi una vocal”.</p>
-            <p>Por ejemplo: “murcielago”, imprimirá 5 veces: “Vi una vocal”</p>
-            <p><em>Recordar revisar qué primitivas tienen disponibles.</em></p>
+            <p>En la entrada recibiremos texto con números.</p>
+            <p>El número 1 representa el color azul, y el número 2 el color rojo.</p>
+            <p>Al leer el número 1 debemos cambiar al lápiz azul, y al leer el número 2 debemos cambiar al lápiz
+                rojo.</p>
+            <p>Sólo debemos imprimir las palabras, no los números.</p>
+            <p>Sólo recibiremos 1 o 2.</p>
+
             <p>¡A programar!</p>
         </div>
     </div>
@@ -87,7 +89,7 @@
                 </div>
                 <div class="section" id="output">
                     <h6>Salida</h6>
-                    <textarea id="output_text" style="min-height: 100px; max-width: 100%"></textarea>
+                    <p id="output_text" readonly style="min-height: 100px; max-width: 100%"></p>
                 </div>
             </div>
             <div class="col s10 m10 l10" style="display: flex; height: 480px;">
@@ -105,50 +107,22 @@
 <!--Opciones de ToolBox a mostrar en esta actividad-->
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
-        <block type="text_print">
-            <value name="TEXT">
-                <block type="text">
-                </block>
-            </value>
-        </block>
+        <block type="text_print"></block>
         <block type="leer_caracter"></block>
         <block type="avanzar_caracter"></block>
+        <block type="cambiar_color_texto"></block>
     </category>
     <category name="Mis procedimientos" custom="MIS_PROCEDIMIENTOS">
     </category>
-    <category name="Mis funciones" custom="MIS_FUNCIONES">
-    </category>
-    <category name="Definiciones">
+    <category name="Procedimientos">
         <block type="procedures_defnoreturn"></block>
-        <block type="procedures_defreturn"></block>
-    </category>
-    <category name="Repeticiones">
-        <block type="controls_repeat_ext">
-            <value name="TIMES">
-                <block type="math_number">
-                    <field name="NUM">10</field>
-                </block>
-            </value>
-        </block>
-        <block type="controls_whileUntil"></block>
-    </category>
-    <category name="Alternativas">
-        <block type="controls_if"></block>
-        <block type="controls_if">
-          <mutation else="1"></mutation>
-        </block>
-    </category>
-    <category name="Operadores lógicos">
-        <block type="logic_compare"></block>
-    </category>
-    <category name="Conectivas lógicas">
-        <block type="logic_operation"></block>
     </category>
     <category name="Valores">
         <block type="text"></block>
-        <block type="math_number">
-            <field name="NUM">10</field>
-        </block>
+    </category>
+    <category name="Repeticiones">
+        <block type="controls_repeat_ext"></block>
+        <block type="controls_whileUntil"></block>
     </category>
     <category name="Sensores">
         <block type="hay_mas_caracteres"></block>
@@ -156,13 +130,16 @@
 </xml>
 
 <!--Genera el toolbox basado en el XML anterior-->
-<script
-        src="../blockly_executer.js">
-</script>
+<script src="../blockly_executer.js"></script>
 
 <!--El nombre de la actividad se usa para nombre de archivo también-->
 <script>
-    setActividad("vocalesv1");
+    setActividad("texto_a_color_v1");
+</script>
+
+<!--Elimina la definición de funciones en "procedimientos"-->
+<script>
+    noHayFunciones()
 </script>
 
 </body>

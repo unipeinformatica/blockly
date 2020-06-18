@@ -1,9 +1,13 @@
 var MOSTRAR_CODIGO = false;
 var VERSION_CODIGO = 1.0;
 var actividad = ""
+/// Tipos de rutinas
+const RUTINAS = {FUNCION: 'return', 
+                 PROCEDIMIENTO: 'noreturn'};
 
 Blockly.JavaScript.addReservedWords('posicion_cadena_caracteres');
 var posicion_cadena_caracteres = 0;
+var color_texto = "#000000";
 
 function setActividad(_actividad) {
     actividad = _actividad;
@@ -17,24 +21,27 @@ var workspace = Blockly.inject('blocklyDiv',
     {
         toolbox: document.getElementById('toolbox'),
         zoom:
-        {
-            controls: true,
-            wheel: true,
-            startScale: 1.0,
-            maxScale: 3,
-            minScale: 0.3,
-            scaleSpeed: 1.2
-        },
+            {
+                controls: true,
+                wheel: true,
+                startScale: 1.0,
+                maxScale: 3,
+                minScale: 0.3,
+                scaleSpeed: 1.2
+            },
         trashcan: true,
         comments: false
     });
 
-    // Registra la función generadora de bloques para la categoría MIS_PROCEDIMIENTOS
-    workspace.registerToolboxCategoryCallback('MIS_PROCEDIMIENTOS', misProcedimientosCallback);
+// Registra la función generadora de bloques para la categoría MIS_FUNCIONES
+workspace.registerToolboxCategoryCallback('MIS_FUNCIONES', misFuncionesCallback);
+// Registra la función generadora de bloques para la categoría MIS_PROCEDIMIENTOS
+workspace.registerToolboxCategoryCallback('MIS_PROCEDIMIENTOS', misProcedimientosCallback);
 
 
 // Exit is used to signal the end of a script.
 Blockly.JavaScript.addReservedWords('exit');
+
 function myUpdateFunction(event) {
     var code = Blockly.Python.workspaceToCode(workspace);
     document.getElementById('codigo_python').value = code;
@@ -52,12 +59,13 @@ var highlightPause = false;
 var runButton = document.getElementById('execute');
 var latestCode = '';
 var runner;
+
 function initApi(interpreter, globalObject) {
-    
-   // Add an API function for the alert() block, generated for "text_print" blocks.
+
+    // Add an API function for the alert() block, generated for "text_print" blocks.
     var wrapper = function (text) {
         text = text ? text.toString() : '';
-        outputArea.value = outputArea.value + '\n' + text;
+        outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + text + "</span> <br>";
     };
     interpreter.setProperty(globalObject, 'alert',
         interpreter.createNativeFunction(wrapper));
@@ -69,43 +77,43 @@ function initApi(interpreter, globalObject) {
     };
     interpreter.setProperty(globalObject, 'prompt',
         interpreter.createNativeFunction(wrapper));
-        Blockly.DOMParser = window.DOMParser;
-        Blockly.Element   = window.Element;
-        Blockly.document  = window.document;
+    Blockly.DOMParser = window.DOMParser;
+    Blockly.Element = window.Element;
+    Blockly.document = window.document;
 
     // Add an API function for the leerCaracter() block.
-    var wrapper = function (text) {
+    var wrapper = function () {
         return leerCaracter();
     };
     interpreter.setProperty(globalObject, 'leerCaracter',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the avanzarCaracter() block.
-    var wrapper = function (text) {
+    var wrapper = function () {
         return avanzarCaracter();
     };
     interpreter.setProperty(globalObject, 'avanzarCaracter',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the hayMasCaracteres() block.
-    var wrapper = function (text) {
+    var wrapper = function () {
         return hayMasCaracteres();
     };
     interpreter.setProperty(globalObject, 'hayMasCaracteres',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the leerEntradaCompleta() block.
-    var wrapper = function (text) {
+    var wrapper = function () {
         return leerEntradaCompleta();
     };
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
         interpreter.createNativeFunction(wrapper));
 
-    // Add an API function for the obtenerCaracter() block.
-    var wrapper = function (text) {
-        return obtenerCaracter();
+    // Add an API function for the cambiarColorTexto() block.
+    var wrapper = function (color) {
+        return cambiarColorTexto(color);
     };
-    interpreter.setProperty(globalObject, 'obtenerCaracter',
+    interpreter.setProperty(globalObject, 'cambiarColorTexto',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API for the wait block.  See wait_block.js
@@ -131,7 +139,7 @@ function resetStepUi(clearOutput) {
     highlightPause = false;
     runButton.disabled = '';
     if (clearOutput) {
-        outputArea.value = '';
+        outputArea.innerHTML = '';
     }
 }
 
@@ -187,7 +195,7 @@ function cargarSolucion(contenido) {
     } catch (e) {
         console.error(e);
         throw "Lo siento, este archivo no tiene una solución de UNIPE Blockly.";
-    }   
+    }
 
     let errors = [];
 
@@ -212,7 +220,7 @@ function save() {
     };
     var a = document.createElement("a");
     a.download = actividad + '.spbq';
-    a.href = URL.createObjectURL(new Blob([JSON.stringify(contenido)], { type: 'application/octet-stream' }));
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(contenido)], {type: 'application/octet-stream'}));
     a.type = 'application/octet-stream';
     a.click();
 }
@@ -221,7 +229,7 @@ function execute() {
     initVariables();
     latestCode = Blockly.JavaScript.workspaceToCode(workspace);
     if (!myInterpreter) {
-        initVariables();        
+        initVariables();
         // First statement of this code.
         // Clear the program output.
         resetStepUi(true);
@@ -243,7 +251,7 @@ function execute() {
                         setTimeout(runner, 10);
                     } else {
                         // Program is complete.
-                        outputArea.value += '\n\n<< Program complete >>';
+                        outputArea.innerHTML += '<br><br><< Program complete >>';
                         resetInterpreter();
                         resetStepUi(false);
                     }
@@ -254,14 +262,15 @@ function execute() {
         return;
     }
 }
+
 // Load the interpreter now, and upon future changes.
 generateCodeAndLoadIntoInterpreter();
 workspace.addChangeListener(myUpdateFunction);
 
 
-
 function initVariables() {
     posicion_cadena_caracteres = 0;
+    color_texto = "#000000";
 }
 
 function leerCaracter() {
@@ -285,21 +294,53 @@ function obtenerCaracter() {
     posicion_cadena_caracteres += 1;
     return caracter;
 }
+/**
+ *
+ * @param unColor es un texto de la forma #000000
+ */
+function cambiarColorTexto(unColor) {
+    color_texto = unColor;
+}
 
 /**
- * Genera, al vuelo, los bloques de llamada para cada procedimiento definido en el workspace.
+ * Función de gestión para la categoría "MIS_FUNCIONES" del Toolbox.
+ * @param {!Blockly.Workspace} Espacio de trabajo de Blockly.
+ * @return {!Array.<!Element>} Lista con bloques de tipo "llamada a función" (formato XML).
+ */
+function misFuncionesCallback(workspace) {
+    return generarBloquesFuncionProcedimiento(workspace, RUTINAS.FUNCION);
+}
+
+/**
+ * Función de gestión para la categoría "MIS_PROCEDIMIENTOS" del Toolbox.
  * @param {!Blockly.Workspace} Espacio de trabajo de Blockly.
  * @return {!Array.<!Element>} Lista con bloques de tipo "llamada a procedimiento" (formato XML).
  */
 function misProcedimientosCallback(workspace) {
+    return generarBloquesFuncionProcedimiento(workspace, RUTINAS.PROCEDIMIENTO);
+}
+
+/**
+ * Genera, al vuelo, los bloques de llamada para cada función/procedimiento definido en el workspace.
+ * @param {!Blockly.Workspace} Espacio de trabajo de Blockly.
+ * @return {!Array.<!Element>} Lista con bloques de tipo "llamada a función/procedimiento" (formato XML).
+ */
+function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
     var xmlList = [];
-    var procedureDefs = workspace.getBlocksByType('procedures_defnoreturn', true);
-    for (var index in procedureDefs){
-        var blockText = '<block type="procedures_callnoreturn">' +
-                        '<field name="NAME">' + procedureDefs[index].getFieldValue('NAME') + '</field>' +
-                        '</block>';
+    var procedureDefs = workspace.getBlocksByType('procedures_def' + tipoRutina, true);
+    for (var procIdx in procedureDefs){
+        var blockText = '<block type="procedures_call' + tipoRutina + '">' +
+                        '<field name="NAME">' + procedureDefs[procIdx].getFieldValue('NAME') + '</field>';
+        if (procedureDefs[procIdx].arguments_.length > 0){
+            blockText += '<mutation>';
+            for (var argIdx in procedureDefs[procIdx].arguments_){
+                blockText += '<arg name="' + procedureDefs[procIdx].arguments_[argIdx] + '"></arg>';
+            }        
+            blockText += '</mutation>';
+        }    
+        blockText += '</block>';
         var block = Blockly.Xml.textToDom(blockText);
         xmlList.push(block);
     }
     return xmlList;
-};
+}

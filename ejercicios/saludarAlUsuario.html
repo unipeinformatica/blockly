@@ -46,13 +46,12 @@
 </nav>
 <div class="container">
     <div id="titulo_ejercicio">
-        <h4>Vocales V1</h4>
+        <h4>Saludar al usuario</h4>
     </div>
     <div id="enunciado" class="col s12">
         <div class="enunciado">
-            <p>En la entrada podremos escribir un texto libremente en minúsculas, sin tildes.</p>
-            <p>Nuestro programa deberá leer dicho texto y cada vez que encuentre una vocal, deberá imprimir en la salida “Vi una vocal”.</p>
-            <p>Por ejemplo: “murcielago”, imprimirá 5 veces: “Vi una vocal”</p>
+            <p>En la entrada pueden escribir su nombre.</p>
+            <p>Luego su programa al ejecutar, debe utilizar dicho nombre para escribir en la salida “Hola! Nombre”.</p>
             <p><em>Recordar revisar qué primitivas tienen disponibles.</em></p>
             <p>¡A programar!</p>
         </div>
@@ -105,22 +104,11 @@
 <!--Opciones de ToolBox a mostrar en esta actividad-->
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
-        <block type="text_print">
-            <value name="TEXT">
-                <block type="text">
-                </block>
-            </value>
-        </block>
+        <block type="text_print"></block>
         <block type="leer_caracter"></block>
         <block type="avanzar_caracter"></block>
     </category>
-    <category name="Mis procedimientos" custom="MIS_PROCEDIMIENTOS">
-    </category>
-    <category name="Mis funciones" custom="MIS_FUNCIONES">
-    </category>
-    <category name="Definiciones">
-        <block type="procedures_defnoreturn"></block>
-        <block type="procedures_defreturn"></block>
+    <category name="Mis procedimientos" custom="PROCEDURE">
     </category>
     <category name="Repeticiones">
         <block type="controls_repeat_ext">
@@ -131,18 +119,6 @@
             </value>
         </block>
         <block type="controls_whileUntil"></block>
-    </category>
-    <category name="Alternativas">
-        <block type="controls_if"></block>
-        <block type="controls_if">
-          <mutation else="1"></mutation>
-        </block>
-    </category>
-    <category name="Operadores lógicos">
-        <block type="logic_compare"></block>
-    </category>
-    <category name="Conectivas lógicas">
-        <block type="logic_operation"></block>
     </category>
     <category name="Valores">
         <block type="text"></block>
@@ -162,8 +138,14 @@
 
 <!--El nombre de la actividad se usa para nombre de archivo también-->
 <script>
-    setActividad("vocalesv1");
+    setActividad("saludar_al_usuario");
 </script>
+
+<!--Elimina la definición de funciones en "procedimientos"-->
+<script>
+    noHayFunciones()
+</script>
+
 
 </body>
 
