@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css" media="screen,projection"/>
+    <!--UNIPE Style-->
+    <link rel="stylesheet" type="text/css" href="../unipe.css"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <script src="../acorn_interpreter.js"></script>
+    <script src="../blockly_compressed.js"></script>
+    <script src="../blocks_compressed.js"></script>
+    <script src="../python_compressed.js"></script>
+    <script src="../javascript_compressed.js"></script>
+    <script src="../msg/js/es.js"></script>
+    <script src="../wait_block.js"></script>
+    <script src="../customBlocks/custom_blocks.js"></script>
+    <style>
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <i class="material-icons left">code</i>
+        <a href="#" class="brand-logo">Unipe Blockly</a>
+        <ul class="right">
+            <li>
+                <a href="../escenarios.html">
+                    <i class="material-icons left">link</i>
+                    Libro de Actividades
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div id="titulo_ejercicio">
+        <h4>ASPO (condicional)</h4>
+    </div>
+    <div id="enunciado" class="col s12">
+        <div class="enunciado">
+            <p>En Argentina se realizó un Aislamiento social preventivo y obligatorio. Dependiendo tu provincia tuvo distintas duraciones.</p>
+            <p>Vamos a preguntar al presidente si ya terminó la cuarentena, basado en la longitud del nombre de entrada.</p>
+
+            <p>Por ejemplo, Mendoza, tiene 7 letras, pregunta 7 veces:</p>
+
+            <p><b>Alberto, ¿terminó la cuarentena?</b></p>
+            <p><b>No.</b></p>
+
+            <p>¡A programar!</p>
+        </div>
+    </div>
+    <div class="card-panel">
+        <div class="row">
+            <div class="col s4 m4 l4">
+                <button id="execute" class="btn waves-effect waves-light" onclick="execute()">
+                    <i class="material-icons left">play_arrow</i>
+                    ejecutar
+                </button>
+            </div>
+            <div class="col s4 m4 l4">
+                <label for="file-upload" id="open" type="file" class="btn waves-effect">
+                    <i class="material-icons left">folder_open</i>
+                    abrir
+                </label>
+                <input id="file-upload" type="file" accept=".spbq"/>
+            </div>
+            <div class="col s4 m4 l4">
+                <button id="save" class="btn waves-effect" onclick="save()">
+                    <i class="material-icons left">save</i>
+                    guardar
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2 m2 l2" id="input_output">
+                <div class="section" id="input">
+                    <h6>Entrada</h6>
+                    <textarea id="input_text" style="min-height: 100px; max-width: 100%"></textarea>
+                </div>
+                <div class="section" id="output">
+                    <h6>Salida</h6>
+                    <p id="output_text" readonly style="min-height: 100px; max-width: 100%"></p>
+                </div>
+            </div>
+            <div class="col s10 m10 l10" style="display: flex; height: 480px;">
+                <div
+                        id="blocklyDiv" class="col s12 m12 l12">
+                </div>
+            </div>
+            <div class="col s2 m2 l2">
+                <textarea id="codigo_python" style="height: 100%;"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Opciones de ToolBox a mostrar en esta actividad-->
+<xml id="toolbox" style="display: none">
+    <category name="Primitivas">
+        <block type="text_print">
+            <value name="TEXT">
+                <block type="text">
+                </block>
+            </value>
+        </block>
+        <block type="leer_caracter"></block>
+        <block type="avanzar_caracter"></block>
+    </category>
+    <category name="Mis procedimientos" custom="MIS_PROCEDIMIENTOS">
+    </category>
+    <category name="Procedimientos">
+        <block type="procedures_defnoreturn"></block>
+    </category>
+    <category name="Valores">
+        <block type="text"></block>
+        <block type="math_number">
+            <field name="NUM">10</field>
+        </block>
+    </category>
+    <category name="Repeticiones">
+        <block type="controls_repeat_ext">
+            <value name="TIMES">
+                <block type="math_number">
+                    <field name="NUM">10</field>
+                </block>
+            </value>
+        </block>
+        <block type="controls_whileUntil"></block>
+    </category>
+    <category name="Sensores">
+        <block type="hay_mas_caracteres"></block>
+    </category>
+</xml>
+
+<!--Genera el toolbox basado en el XML anterior-->
+<script src="../blockly_executer.js"></script>
+
+<!--El nombre de la actividad se usa para nombre de archivo también-->
+<script>
+    setActividad("aspo");
+</script>
+
+<!--Elimina la definición de funciones en "procedimientos"-->
+<script>
+    noHayFunciones()
+</script>
+
+</body>
+
+</html>
