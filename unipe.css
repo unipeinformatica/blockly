@@ -11,10 +11,10 @@ h1 {
     size: 50px;
 }
 
-blockquote{
+blockquote {
     border-left: solid #23263D;
     border-bottom: solid #23263D;
-    background-color: darkgray ;
+    background-color: darkgray;
     color: #23263D;
 }
 
@@ -63,18 +63,31 @@ a:hover {
     text-align: center;
 }
 
-.waves-effect{
+.waves-effect {
     background-color: rgba(2, 67, 96, 0.7);
 }
 
-.waves-effect:hover{
+.waves-effect:hover {
     background-color: rgba(2, 67, 96, 1);
 }
 
-.waves-light{
+.waves-light {
     background-color: rgba(99, 181, 212, 1);
 }
 
-.waves-light:hover{
+.waves-light:hover {
     background-color: #23263D;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+input:not([type]), textarea.materialize-textarea {
+    height: 100%;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: 1px solid rgba(2, 67, 96, 1);
+}
+
