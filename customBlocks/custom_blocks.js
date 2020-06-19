@@ -21,7 +21,7 @@ Blockly.defineBlocksWithJsonArray([
         "message0": "Leer caracter de entrada",
         "inputsInline": true,
         "output": null,
-        "colour": 230,
+        "colour": Blockly.Blocks.primitivas.COLOUR,
         "tooltip": "Leer caracter de entrada",
         "helpUrl": ""
     },
@@ -30,7 +30,7 @@ Blockly.defineBlocksWithJsonArray([
         "message0": "Leer texto de entrada",
         "inputsInline": true,
         "output": null,
-        "colour": 230,
+        "colour": Blockly.Blocks.primitivas.COLOUR,
         "tooltip": "Leer texto de entrada",
         "helpUrl": ""
     },
@@ -40,7 +40,7 @@ Blockly.defineBlocksWithJsonArray([
         "inputsInline": true,
         "previousStatement": null,
         "nextStatement": null,
-        "colour": 230,
+        "colour": Blockly.Blocks.primitivas.COLOUR,
         "tooltip": "Avanzar un caracter de entrada",
         "helpUrl": ""
     },
@@ -55,7 +55,7 @@ Blockly.defineBlocksWithJsonArray([
     },
     {
         "type": "cambiar_color_texto",
-        "message0": "colour: %1",
+        "message0": "Cambiar texto a color: %1",
         "args0": [
             {
                 "type": "field_colour",
@@ -69,7 +69,7 @@ Blockly.defineBlocksWithJsonArray([
         "colour": Blockly.Blocks.primitivas.COLOUR,
         "tooltip": "Cambia el color de texto de la salida",
         "helpUrl": ""
-    }
+    },
 
 ])
 
@@ -102,8 +102,8 @@ Blockly.JavaScript['obtener_caracter'] = function (block) {
 };
 
 Blockly.JavaScript['cambiar_color_texto'] = function (block) {
-    var colour = block.getFieldValue('COLOUR');
-    var code = 'cambiarColorTexto("' + colour + '");';
+    var color = block.getFieldValue('COLOUR');
+    var code = 'cambiarColorTexto("' + color + '");';
     return code;
 
 };
