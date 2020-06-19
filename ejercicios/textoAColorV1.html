@@ -102,22 +102,54 @@
 <!--Opciones de ToolBox a mostrar en esta actividad-->
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
-        <block type="text_print"></block>
+        <block type="text_print">
+            <value name="TEXT">
+                <block type="text">
+                </block>
+            </value>
+        </block>
         <block type="leer_caracter"></block>
         <block type="avanzar_caracter"></block>
         <block type="cambiar_color_texto"></block>
     </category>
     <category name="Mis procedimientos" custom="MIS_PROCEDIMIENTOS">
     </category>
-    <category name="Procedimientos">
+    <category name="Mis funciones" custom="MIS_FUNCIONES">
+    </category>
+    <category name="Definiciones">
         <block type="procedures_defnoreturn"></block>
+        <block type="procedures_defreturn">
+            <mutation statements="false"></mutation>
+        </block>
+    </category>
+    <category name="Repeticiones">
+        <block type="controls_repeat_ext">
+            <value name="TIMES">
+                <block type="math_number">
+                    <field name="NUM">10</field>
+                </block>
+            </value>
+        </block>
+        <block type="controls_whileUntil"></block>
+    </category>
+    <category name="Alternativas">
+        <block type="controls_if"></block>
+        <block type="controls_if">
+            <mutation else="1"></mutation>
+        </block>
+    </category>
+    <category name="Operadores lógicos">
+        <block type="logic_compare"></block>
+    </category>
+    <category name="Conectivas lógicas">
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
     </category>
     <category name="Valores">
         <block type="text"></block>
-    </category>
-    <category name="Repeticiones">
-        <block type="controls_repeat_ext"></block>
-        <block type="controls_whileUntil"></block>
+        <block type="math_number">
+            <field name="NUM">10</field>
+        </block>
     </category>
     <category name="Sensores">
         <block type="hay_mas_caracteres"></block>
@@ -130,11 +162,6 @@
 <!--El nombre de la actividad se usa para nombre de archivo también-->
 <script>
     setActividad("texto_a_color_v1");
-</script>
-
-<!--Elimina la definición de funciones en "procedimientos"-->
-<script>
-    noHayFunciones()
 </script>
 
 </body>
