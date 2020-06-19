@@ -109,7 +109,6 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
         interpreter.createNativeFunction(wrapper));
 
-
     // Add an API function for the cambiarColorTexto() block.
     var wrapper = function (color) {
         return cambiarColorTexto(color);
@@ -290,6 +289,11 @@ function leerEntradaCompleta() {
     return document.getElementById("input_text").value;
 }
 
+function obtenerCaracter() {
+    var caracter = document.getElementById("input_text").value.charAt(posicion_cadena_caracteres);
+    posicion_cadena_caracteres += 1;
+    return caracter;
+}
 /**
  *
  * @param unColor es un texto de la forma #000000
@@ -339,5 +343,4 @@ function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
         xmlList.push(block);
     }
     return xmlList;
-};
-
+}
