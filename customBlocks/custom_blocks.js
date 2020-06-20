@@ -27,7 +27,7 @@ Blockly.defineBlocksWithJsonArray([
     },
     {
         "type": "leer_entrada_completa",
-        "message0": "Leer texto de entrada",
+        "message0": "Leer todo el texto de entrada",
         "inputsInline": true,
         "output": null,
         "colour": Blockly.Blocks.primitivas.COLOUR,
