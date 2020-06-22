@@ -98,7 +98,12 @@
 <!--Opciones de ToolBox a mostrar en esta actividad-->
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
-        <block type="text_print"></block>
+        <block type="text_print">
+            <value name="TEXT">
+                <block type="text">
+                </block>
+            </value>
+        </block>
     </category>
     <category name="Mis procedimientos" custom="MIS_PROCEDIMIENTOS">
     </category>
@@ -107,13 +112,6 @@
     </category>
     <category name="Valores">
         <block type="text"></block>
-    </category>
-    <category name="Repeticiones">
-        <block type="controls_repeat_ext"></block>
-        <block type="controls_whileUntil"></block>
-    </category>
-    <category name="Sensores">
-        <block type="hay_mas_caracteres"></block>
     </category>
 </xml>
 
