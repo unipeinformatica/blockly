@@ -26,6 +26,15 @@ Blockly.defineBlocksWithJsonArray([
         "helpUrl": ""
     },
     {
+        "type": "obtener_caracter",
+        "message0": "Obtener caracter de entrada",
+        "inputsInline": true,
+        "output": null,
+        "colour": Blockly.Blocks.primitivas.COLOUR,
+        "tooltip": "Lee y avanza un caracter de entrada",
+        "helpUrl": ""
+    },
+    {
         "type": "leer_entrada_completa",
         "message0": "Leer todo el texto de entrada",
         "inputsInline": true,
