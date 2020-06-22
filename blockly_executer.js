@@ -17,7 +17,7 @@ function setActividad(_actividad) {
 }
 
 window.onload = function () {
-    document.getElementById("codigo_python").hidden = !MOSTRAR_CODIGO;
+    // document.getElementById("codigo_python").hidden = !MOSTRAR_CODIGO;
 }
 
 var workspace = Blockly.inject('blocklyDiv',
@@ -46,7 +46,8 @@ workspace.registerToolboxCategoryCallback('MIS_PROCEDIMIENTOS', misProcedimiento
 Blockly.JavaScript.addReservedWords('exit');
 
 function myUpdateFunction(event) {
-    var code = Blockly.Python.workspaceToCode(workspace);
+    var code = codigoInicialPython();
+    code += Blockly.Python.workspaceToCode(workspace);
     document.getElementById('codigo_python').value = code;
     if (!(event instanceof Blockly.Events.Ui)) {
         // Something changed. Parser needs to be reloaded.
@@ -342,6 +343,7 @@ function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
     for (var procIdx in procedureDefs) {
         var blockText = '<block type="procedures_call' + tipoRutina + '">' +
             '<field name="NAME">' + procedureDefs[procIdx].getFieldValue('NAME') + '</field>';
+
         if (procedureDefs[procIdx].arguments_.length > 0) {
             blockText += '<mutation>';
             for (var argIdx in procedureDefs[procIdx].arguments_) {
@@ -354,4 +356,24 @@ function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
         xmlList.push(block);
     }
     return xmlList;
+}
+
+rutinasConsolaPython = ["leer_caracter",
+                        "leer_entrada_completa",
+                        "obtener_caracter",
+                        "avanzar_caracter",
+                        "hay_mas_caracteres",
+                        "imprimir",
+                        "cambiar_color_texto"];
+/**
+ * Genera el código de inicial Python
+ * @return {!String} Código Python con llamadas a import para cada rutina del módulo consola.
+ */
+function codigoInicialPython() {
+    var code = ""
+    for (rutinaIdx in rutinasConsolaPython) {
+        code += "from consola import " + rutinasConsolaPython[rutinaIdx] + "\n"
+    }
+    code += "\n"
+    return code        
 }
