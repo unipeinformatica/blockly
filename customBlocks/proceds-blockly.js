@@ -30,12 +30,12 @@ window.initProcedsBlockly = function(customStatementType, initialize = () => {})
     }
     // Build the DOM.
     /** @type {SVGElement} */
-    this.fieldGroup_ = Blockly.utils.createSvgElement('g', {}, null);
+    this.fieldGroup_ = Blockly.utils.dom.createSvgElement('g', {}, null);
     if (!this.visible_) {
       this.fieldGroup_.style.display = 'none';
     }
     /** @type {SVGElement} */
-    this.imageElement_ = Blockly.utils.createSvgElement(
+    this.imageElement_ = Blockly.utils.dom.createSvgElement(
       'image',
       {
         'height': this.height_ + 'px',
