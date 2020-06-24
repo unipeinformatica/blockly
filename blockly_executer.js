@@ -297,8 +297,8 @@ function obtenerCaracter() {
 function imprimir(valor) {
     valor = valor ? valor.toString() : '';
     outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + valor + "</span>";
-
 }
+
 
 /**
  *
@@ -336,7 +336,9 @@ function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
     var procedureDefs = workspace.getBlocksByType('procedures_def' + tipoRutina, true);
     for (var procIdx in procedureDefs) {
         var blockText = '<block type="procedures_call' + tipoRutina + '">' +
+
             '<field name="NAME">' + procedureDefs[procIdx].getFieldValue('NAME') + '</field>';
+
 
         if (procedureDefs[procIdx].arguments_.length > 0) {
             blockText += '<mutation>';
@@ -360,6 +362,7 @@ rutinasConsolaPython = ["leer_caracter",
     "imprimir",
     "cambiar_color_texto"];
 
+
 /**
  * Genera el código de inicial Python
  * @return {!String} Código Python con llamadas a import para cada rutina del módulo consola.
@@ -370,5 +373,6 @@ function codigoInicialPython() {
         code += "from consola import " + rutinasConsolaPython[rutinaIdx] + "\n"
     }
     code += "\n"
+
     return code
 }

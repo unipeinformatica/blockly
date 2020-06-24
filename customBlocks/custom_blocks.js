@@ -65,6 +65,7 @@ Blockly.defineBlocksWithJsonArray([
     {
         "type": "cambiar_color_texto",
 
+
         "message0": "Cambiar el color del texto a: %1",
 
         "args0": [
@@ -86,8 +87,10 @@ Blockly.defineBlocksWithJsonArray([
         "message0": "Imprimir %1",
         "args0": [
             {
+
                 "type": "input_value",
                 "name": "VALOR"
+
             }
         ],
         "previousStatement": null,
@@ -119,7 +122,11 @@ Blockly.Python['leer_caracter'] = function (block) {
 /**
  * Funciones generadoras de código correspodientes al bloque "leer_entrada_completa"
  * @param {!Blockly.Block} Bloque.
+ <<<<<<< HEAD
  * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
+ =======
+ * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
+ >>>>>>> 1a3d160eb74afa7f793c83c24d194fbf5be50f60
  */
 Blockly.JavaScript['leer_entrada_completa'] = function (block) {
     var code = 'leerEntradaCompleta()';
@@ -146,7 +153,6 @@ Blockly.JavaScript['obtener_caracter'] = function (block) {
 Blockly.Python['obtener_caracter'] = function (block) {
     var code = 'obtener_caracter()';
     return [code, Blockly.Python.ORDER_ATOMIC];
-
 };
 
 
