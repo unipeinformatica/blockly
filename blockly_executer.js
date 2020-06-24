@@ -2,8 +2,11 @@ var MOSTRAR_CODIGO = false;
 var VERSION_CODIGO = 1.0;
 var actividad = ""
 /// Tipos de rutinas
-const RUTINAS = {FUNCION: 'return', 
-                 PROCEDIMIENTO: 'noreturn'};
+const RUTINAS = {
+    FUNCION: 'return',
+    PROCEDIMIENTO: 'noreturn'
+};
+delete Blockly.Blocks.math_change;
 
 Blockly.JavaScript.addReservedWords('posicion_cadena_caracteres');
 var posicion_cadena_caracteres = 0;
@@ -107,6 +110,13 @@ function initApi(interpreter, globalObject) {
         return leerEntradaCompleta();
     };
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
+        interpreter.createNativeFunction(wrapper));
+
+    // Add an API function for the obtenerCaracter() block.
+    var wrapper = function () {
+        return obtenerCaracter();
+    };
+    interpreter.setProperty(globalObject, 'obtenerCaracter',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the cambiarColorTexto() block.
@@ -294,6 +304,7 @@ function obtenerCaracter() {
     posicion_cadena_caracteres += 1;
     return caracter;
 }
+
 /**
  *
  * @param unColor es un texto de la forma #000000
@@ -328,16 +339,16 @@ function misProcedimientosCallback(workspace) {
 function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
     var xmlList = [];
     var procedureDefs = workspace.getBlocksByType('procedures_def' + tipoRutina, true);
-    for (var procIdx in procedureDefs){
+    for (var procIdx in procedureDefs) {
         var blockText = '<block type="procedures_call' + tipoRutina + '">' +
-                        '<field name="NAME">' + procedureDefs[procIdx].getFieldValue('NAME') + '</field>';
-        if (procedureDefs[procIdx].arguments_.length > 0){
+            '<field name="NAME">' + procedureDefs[procIdx].getFieldValue('NAME') + '</field>';
+        if (procedureDefs[procIdx].arguments_.length > 0) {
             blockText += '<mutation>';
-            for (var argIdx in procedureDefs[procIdx].arguments_){
+            for (var argIdx in procedureDefs[procIdx].arguments_) {
                 blockText += '<arg name="' + procedureDefs[procIdx].arguments_[argIdx] + '"></arg>';
-            }        
+            }
             blockText += '</mutation>';
-        }    
+        }
         blockText += '</block>';
         var block = Blockly.Xml.textToDom(blockText);
         xmlList.push(block);
