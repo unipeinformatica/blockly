@@ -99,11 +99,19 @@
 <!--Opciones de ToolBox a mostrar en esta actividad-->
 <xml id="toolbox" style="display: none">
     <category name="Primitivas">
-        <block type="text_print"></block>
+        <block type="text_print">
+            <value name="TEXT">
+                <block type="text">
+                </block>
+            </value>
+        </block>
         <block type="leer_caracter"></block>
         <block type="avanzar_caracter"></block>
     </category>
-    <category name="Mis procedimientos" custom="PROCEDURE">
+    <category name="Mis procedimientos" custom="MIS_PROCEDIMIENTOS">
+    </category>
+    <category name="Definiciones">
+        <block type="procedures_defnoreturn"></block>
     </category>
     <category name="Repeticiones">
         <block type="controls_repeat_ext">
