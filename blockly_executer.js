@@ -63,24 +63,10 @@ var runner;
 
 function initApi(interpreter, globalObject) {
 
-    // Add an API function for the alert() block, generated for "text_print" blocks.
-    var wrapper = function (text) {
-        text = text ? text.toString() : '';
-        outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + text + "</span> <br>";
-    };
-    interpreter.setProperty(globalObject, 'alert',
-        interpreter.createNativeFunction(wrapper));
-
-    // Add an API function for the prompt() block.
-    var wrapper = function (text) {
-        text = text ? text.toString() : '';
-        return interpreter.createPrimitive(prompt(text));
-    };
-    interpreter.setProperty(globalObject, 'prompt',
-        interpreter.createNativeFunction(wrapper));
     Blockly.DOMParser = window.DOMParser;
     Blockly.Element = window.Element;
     Blockly.document = window.document;
+
 
     // Add an API function for the leerCaracter() block.
     var wrapper = function () {
@@ -110,6 +96,12 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
         interpreter.createNativeFunction(wrapper));
 
+    // Add an API function for the imprimir() block.
+    var wrapper = function (valor) {
+        return imprimir(valor);
+    };
+    interpreter.setProperty(globalObject, 'imprimir',
+        interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the cambiarColorTexto() block.
     var wrapper = function (color) {
@@ -289,6 +281,11 @@ function hayMasCaracteres() {
 
 function leerEntradaCompleta() {
     return document.getElementById("input_text").value;
+}
+
+function imprimir(valor) {
+    valor = valor ? valor.toString() : '';
+    outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + valor + "</span>";
 }
 
 /**
