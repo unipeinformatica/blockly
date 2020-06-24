@@ -91,3 +91,9 @@ input:not([type]), textarea.materialize-textarea {
     border: 1px solid rgba(2, 67, 96, 1);
 }
 
+.output_text {
+    min-height: 100px;
+    max-width: 100%;
+    border: 1px solid rgb(0, 0, 0);
+}
+
