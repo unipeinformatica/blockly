@@ -1,6 +1,7 @@
 // Definición de colores sobre estilo Theme Classic que no se cambia
 Blockly.Blocks.sensores = {COLOUR: '#2ca5e2'};
 Blockly.Blocks.primitivas = {COLOUR: '#4B6CD4'};
+Blockly.Blocks.texto = {COLOUR: '#5BA58C'};
 Blockly.Themes.Classic.blockStyles.loop_blocks.colourPrimary = "#ee7d16";
 Blockly.Themes.Classic.blockStyles.logic_blocks.colourPrimary = "#ee7d16";
 
@@ -95,7 +96,7 @@ Blockly.defineBlocksWithJsonArray([
         ],
         "previousStatement": null,
         "nextStatement": null,
-        "colour": Blockly.Blocks.primitivas.COLOUR,
+        "colour": Blockly.Blocks.texto.COLOUR,
         "tooltip": "Imprime el valor recibido",
         "helpUrl": ""
     },
