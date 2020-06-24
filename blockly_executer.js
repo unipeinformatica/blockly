@@ -114,8 +114,23 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'cambiarColorTexto',
         interpreter.createNativeFunction(wrapper));
 
+    // Add an API function for the cambiarColorTexto() block.
+    var wrapper = function () {
+        return obtenerCaracter();
+    };
+    interpreter.setProperty(globalObject, 'obtenerCaracter',
+        interpreter.createNativeFunction(wrapper));
+
+    // Add an API function for the cambiarColorTexto() block.
+    var wrapper = function () {
+        return saltoDeLinea();
+    };
+    interpreter.setProperty(globalObject, 'saltoDeLinea',
+        interpreter.createNativeFunction(wrapper));
+
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
+
 
     // Add an API function for highlighting blocks.
     var wrapper = function (id) {
@@ -276,7 +291,7 @@ function leerCaracter() {
 }
 
 function saltoDeLinea() {
-    return "&ltbr&gt";
+    return "<br>";
 }
 
 function avanzarCaracter() {
