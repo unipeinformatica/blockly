@@ -275,6 +275,10 @@ function leerCaracter() {
     return document.getElementById("input_text").value.charAt(posicion_cadena_caracteres);
 }
 
+function saltoDeLinea() {
+    return "&ltbr&gt";
+}
+
 function avanzarCaracter() {
     posicion_cadena_caracteres += 1;
 }

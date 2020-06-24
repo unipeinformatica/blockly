@@ -245,6 +245,5 @@ Blockly.JavaScript['salto_de_linea'] = function (block) {
 };
 
 Blockly.Python['salto_de_linea'] = function (block) {
-    var code = 'saltoDeLinea()';
-    return [code, Blockly.Python.ORDER_ATOMIC];
+    return;
 };
