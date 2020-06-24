@@ -1,6 +1,7 @@
 // Definición de colores sobre estilo Theme Classic que no se cambia
 Blockly.Blocks.sensores = {COLOUR: '#2ca5e2'};
 Blockly.Blocks.primitivas = {COLOUR: '#4B6CD4'};
+Blockly.Blocks.texto = {COLOUR: '#5BA58C'};
 Blockly.Themes.Classic.blockStyles.loop_blocks.colourPrimary = "#ee7d16";
 Blockly.Themes.Classic.blockStyles.logic_blocks.colourPrimary = "#ee7d16";
 
@@ -64,11 +65,14 @@ Blockly.defineBlocksWithJsonArray([
     },
     {
         "type": "cambiar_color_texto",
-        "message0": "Cambiar texto a color: %1",
+
+
+        "message0": "Cambiar el color del texto a: %1",
+
         "args0": [
             {
                 "type": "field_colour",
-                "name": "COLOUR",
+                "name": "COLOR",
                 "colour": "#ff4040"
             }
         ],
@@ -79,79 +83,141 @@ Blockly.defineBlocksWithJsonArray([
         "tooltip": "Cambia el color de texto de la salida",
         "helpUrl": ""
     },
+    {
+        "type": "imprimir",
+        "message0": "Imprimir %1",
+        "args0": [
+            {
 
+                "type": "input_value",
+                "name": "VALOR"
+
+            }
+        ],
+        "previousStatement": null,
+        "nextStatement": null,
+        "colour": Blockly.Blocks.texto.COLOUR,
+        "tooltip": "Imprime el valor recibido",
+        "helpUrl": ""
+    },
 ])
 
+
+/**
+ * Funciones generadoras de código correspodientes al bloque "leer_caracter"
+ * @param {!Blockly.Block} Bloque.
+ * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
+ */
 Blockly.JavaScript['leer_caracter'] = function (block) {
     var code = 'leerCaracter()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 
 };
 
+Blockly.Python['leer_caracter'] = function (block) {
+    var code = 'leer_caracter()';
+    return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
+
+/**
+ * Funciones generadoras de código correspodientes al bloque "leer_entrada_completa"
+ * @param {!Blockly.Block} Bloque.
+ * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
+Blockly.JavaScript['leer_entrada_completa'] = function (block) {
+    var code = 'leerEntradaCompleta()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.Python['leer_entrada_completa'] = function (block) {
+    var code = 'leer_entrada_completa()';
+    return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
+
+/**
+ * Funciones generadoras de código correspodientes al bloque "obtener_caracter"
+ * @param {!Blockly.Block} Bloque.
+ * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
+ */
+Blockly.JavaScript['obtener_caracter'] = function (block) {
+    var code = 'obtenerCaracter()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+
+Blockly.Python['obtener_caracter'] = function (block) {
+    var code = 'obtener_caracter()';
+    return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
+
+/**
+ * Funciones generadoras de código correspodientes al bloque "avanzar_caracter"
+ * @param {!Blockly.Block} Bloque.
+ * @return {string} Código JavaScript o Python.
+ */
 Blockly.JavaScript['avanzar_caracter'] = function (block) {
-    var code = 'avanzarCaracter();';
+    var code = 'avanzarCaracter();\n';
     return code;
 
 };
 
+Blockly.Python['avanzar_caracter'] = function (block) {
+    var code = 'avanzar_caracter()\n';
+    return code;
+};
+
+
+/**
+ * Funciones generadoras de código correspodientes al bloque "hay_mas_caracteres"
+ * @param {!Blockly.Block} Bloque.
+ * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
+ */
 Blockly.JavaScript['hay_mas_caracteres'] = function (block) {
     var code = 'hayMasCaracteres()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 
 };
 
-Blockly.JavaScript['leer_entrada_completa'] = function (block) {
-    var code = 'leerEntradaCompleta()';
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-Blockly.JavaScript['obtener_caracter'] = function (block) {
-    var code = 'obtenerCaracter()';
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-Blockly.JavaScript['cambiar_color_texto'] = function (block) {
-    var color = block.getFieldValue('COLOUR');
-    var code = 'cambiarColorTexto("' + color + '");';
-    return code;
-
-};
-
-Blockly.Python['leer_caracter'] = function (block) {
-
-    // TODO
-
-    var code = '"manola"';
-    return [code, Blockly.Python.ORDER_ATOMIC];
-};
-
-Blockly.Python['avanzar_caracter'] = function (block) {
-    // TODO
-    var code = 'codigo';
-    return code;
-};
-
 Blockly.Python['hay_mas_caracteres'] = function (block) {
-    // TODO
-    var code = 'codigo';
+    var code = 'hay_mas_caracteres()';
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
-Blockly.Python['leer_entrada_completa'] = function (block) {
-    var code = 'leerEntradaCompleta()';
-    return [code, Blockly.Python.ORDER_ATOMIC];
+
+/**
+ * Funciones generadoras de código correspodientes al bloque "imprimir"
+ * @param {!Blockly.Block} Bloque.
+ * @return {string} Código JavaScript o Python.
+ */
+Blockly.JavaScript['imprimir'] = function (block) {
+    var valor = Blockly.JavaScript.valueToCode(block, 'VALOR', Blockly.JavaScript.ORDER_NONE);
+    var code = 'imprimir(' + valor + ');\n';
+    return code;
 };
 
-Blockly.Python['obtener_caracter'] = function (block) {
-    // TODO: revisar que luego imprima el código correspondiente
-    var codigo_python = 'caracter = input_text.get(posicion_cadena_caracteres) ' +
-        '\n posicion_cadena_caracteres +=1 \n return caracter';
-    return codigo_python;
+Blockly.Python['imprimir'] = function (block) {
+    var valor = Blockly.Python.valueToCode(block, 'VALOR', Blockly.Python.ORDER_NONE);
+    var code = 'imprimir(' + valor + ')\n';
+    return code;
+};
+
+
+/**
+ * Funciones generadoras de código correspodientes al bloque "cambiar_color_texto"
+ * @param {!Blockly.Block} Bloque.
+ * @return {string} Código JavaScript o Python.
+ */
+Blockly.JavaScript['cambiar_color_texto'] = function (block) {
+    var color = block.getFieldValue('COLOR');
+    var code = 'cambiarColorTexto("' + color + '");\n';
+    return code;
 
 };
 
 Blockly.Python['cambiar_color_texto'] = function (block) {
-    var code = 'cambiarColorTexto()';
+    var color = block.getFieldValue('COLOR');
+    var code = 'cambiarColorTexto("' + color + '")\n';
     return code;
-
 };
