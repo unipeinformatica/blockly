@@ -66,24 +66,10 @@ var runner;
 
 function initApi(interpreter, globalObject) {
 
-    // Add an API function for the alert() block, generated for "text_print" blocks.
-    var wrapper = function (text) {
-        text = text ? text.toString() : '';
-        outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + text + "</span>";
-    };
-    interpreter.setProperty(globalObject, 'alert',
-        interpreter.createNativeFunction(wrapper));
-
-    // Add an API function for the prompt() block.
-    var wrapper = function (text) {
-        text = text ? text.toString() : '';
-        return interpreter.createPrimitive(prompt(text));
-    };
-    interpreter.setProperty(globalObject, 'prompt',
-        interpreter.createNativeFunction(wrapper));
     Blockly.DOMParser = window.DOMParser;
     Blockly.Element = window.Element;
     Blockly.document = window.document;
+
 
     // Add an API function for the leerCaracter() block.
     var wrapper = function () {
@@ -113,11 +99,12 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
         interpreter.createNativeFunction(wrapper));
 
-    // Add an API function for the obtenerCaracter() block.
-    var wrapper = function () {
-        return obtenerCaracter();
+    // Add an API function for the imprimir() block.
+    var wrapper = function (valor) {
+        return imprimir(valor);
     };
-    interpreter.setProperty(globalObject, 'obtenerCaracter',
+    interpreter.setProperty(globalObject, 'imprimir',
+
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the cambiarColorTexto() block.
@@ -300,10 +287,17 @@ function leerEntradaCompleta() {
     return document.getElementById("input_text").value;
 }
 
+
 function obtenerCaracter() {
     var caracter = document.getElementById("input_text").value.charAt(posicion_cadena_caracteres);
     posicion_cadena_caracteres += 1;
     return caracter;
+}
+
+function imprimir(valor) {
+    valor = valor ? valor.toString() : '';
+    outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + valor + "</span>";
+
 }
 
 /**
@@ -359,12 +353,13 @@ function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
 }
 
 rutinasConsolaPython = ["leer_caracter",
-                        "leer_entrada_completa",
-                        "obtener_caracter",
-                        "avanzar_caracter",
-                        "hay_mas_caracteres",
-                        "imprimir",
-                        "cambiar_color_texto"];
+    "leer_entrada_completa",
+    "obtener_caracter",
+    "avanzar_caracter",
+    "hay_mas_caracteres",
+    "imprimir",
+    "cambiar_color_texto"];
+
 /**
  * Genera el código de inicial Python
  * @return {!String} Código Python con llamadas a import para cada rutina del módulo consola.
@@ -375,5 +370,5 @@ function codigoInicialPython() {
         code += "from consola import " + rutinasConsolaPython[rutinaIdx] + "\n"
     }
     code += "\n"
-    return code        
+    return code
 }
