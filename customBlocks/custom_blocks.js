@@ -100,6 +100,15 @@ Blockly.defineBlocksWithJsonArray([
         "tooltip": "Imprime el valor recibido",
         "helpUrl": ""
     },
+    {
+        "type": "salto_de_linea",
+        "message0": "Salto de linea",
+        "inputsInline": true,
+        "output": null,
+        "colour": Blockly.Blocks.primitivas.COLOUR,
+        "tooltip": "Salto de linea",
+        "helpUrl": ""
+    },
 ])
 
 
@@ -124,6 +133,7 @@ Blockly.Python['leer_caracter'] = function (block) {
  * Funciones generadoras de código correspodientes al bloque "leer_entrada_completa"
  * @param {!Blockly.Block} Bloque.
  * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
+ */
 Blockly.JavaScript['leer_entrada_completa'] = function (block) {
     var code = 'leerEntradaCompleta()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
@@ -220,4 +230,21 @@ Blockly.Python['cambiar_color_texto'] = function (block) {
     var color = block.getFieldValue('COLOR');
     var code = 'cambiarColorTexto("' + color + '")\n';
     return code;
+};
+
+
+/**
+ * Funciones generadoras de código correspodientes al bloque "salto_de_linea"
+ * @param {!Blockly.Block} Bloque.
+ * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
+ */
+Blockly.JavaScript['salto_de_linea'] = function (block) {
+    var code = 'saltoDeLinea()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+
+};
+
+Blockly.Python['salto_de_linea'] = function (block) {
+    var code = 'saltoDeLinea()';
+    return [code, Blockly.Python.ORDER_ATOMIC];
 };
