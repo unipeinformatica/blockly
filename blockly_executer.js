@@ -69,75 +69,74 @@ function initApi(interpreter, globalObject) {
     Blockly.DOMParser = window.DOMParser;
     Blockly.Element = window.Element;
     Blockly.document = window.document;
-    let wrapper;
 
     // Add an API function for the leerCaracter() block.
-    wrapper = function () {
+    let leerCaracter = function () {
         return leerCaracter();
     };
     interpreter.setProperty(globalObject, 'leerCaracter',
-        interpreter.createNativeFunction(wrapper));
+        interpreter.createNativeFunction(leerCaracter));
 
     // Add an API function for the avanzarCaracter() block.
-    wrapper = function () {
+    let avanzarCaracter = function () {
         return avanzarCaracter();
     };
     interpreter.setProperty(globalObject, 'avanzarCaracter',
-        interpreter.createNativeFunction(wrapper));
+        interpreter.createNativeFunction(avanzarCaracter));
 
     // Add an API function for the hayMasCaracteres() block.
-    wrapper = function () {
+    let hayMasCaracteres = function () {
         return hayMasCaracteres();
     };
     interpreter.setProperty(globalObject, 'hayMasCaracteres',
-        interpreter.createNativeFunction(wrapper));
+        interpreter.createNativeFunction(hayMasCaracteres));
 
     // Add an API function for the leerEntradaCompleta() block.
-    wrapper = function () {
+    let leerEntradaCompleta = function () {
         return leerEntradaCompleta();
     };
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
-        interpreter.createNativeFunction(wrapper));
+        interpreter.createNativeFunction(leerEntradaCompleta));
 
     // Add an API function for the imprimir() block.
-    wrapper = function (valor) {
+    let imprimir = function (valor) {
         return imprimir(valor);
     };
     interpreter.setProperty(globalObject, 'imprimir',
 
-        interpreter.createNativeFunction(wrapper));
+        interpreter.createNativeFunction(imprimir));
 
     // Add an API function for the cambiarColorTexto() block.
-    wrapper = function (color) {
+    let cambiarColorTexto = function (color) {
         return cambiarColorTexto(color);
     };
     interpreter.setProperty(globalObject, 'cambiarColorTexto',
-        interpreter.createNativeFunction(wrapper));
+        interpreter.createNativeFunction(cambiarColorTexto));
 
-    // Add an API function for the cambiarColorTexto() block.
-    wrapper = function () {
+    // Add an API function for the obtenerCaracter() block.
+    let obtenerCaracter = function () {
         return obtenerCaracter();
     };
     interpreter.setProperty(globalObject, 'obtenerCaracter',
-        interpreter.createNativeFunction(wrapper));
+        interpreter.createNativeFunction(obtenerCaracter));
 
-    // Add an API function for the cambiarColorTexto() block.
-    wrapper = function () {
+    // Add an API function for the saltoDeLinea() block.
+    let saltoDeLinea = function () {
         return saltoDeLinea();
     };
     interpreter.setProperty(globalObject, 'saltoDeLinea',
-        interpreter.createNativeFunction(wrapper));
+        interpreter.createNativeFunction(saltoDeLinea));
 
     // Add an API for the wait block.  See wait_block.js
     initInterpreterWaitForSeconds(interpreter, globalObject);
 
 
     // Add an API function for highlighting blocks.
-    wrapper = function (id) {
+    let highlightBlock = function (id) {
         return workspace.highlightBlock(id);
     };
     interpreter.setProperty(globalObject, 'highlightBlock',
-        interpreter.createNativeFunction(wrapper));
+        interpreter.createNativeFunction(highlightBlock));
 
 }
 
