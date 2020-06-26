@@ -7,7 +7,17 @@ from consola import hay_mas_caracteres
 from consola import imprimir
 from consola import cambiar_color_texto
 
-if 1 == leer_numero():
-  imprimir(leer_numero())
-else:
-  imprimir('no era numero')
+def Tenes_que_trabajar():
+  if not sos_menor_de_edad() and not sos_jubilado():
+    imprimir('Tenes que trabajar')
+  else:
+    imprimir('Podes irte de vacaciones')
+
+def sos_menor_de_edad():
+  return leer_numero() <= 18
+
+def sos_jubilado():
+  return leer_numero() >= 65
+
+
+Tenes_que_trabajar()
