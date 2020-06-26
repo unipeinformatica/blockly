@@ -46,7 +46,7 @@ workspace.registerToolboxCategoryCallback('MIS_PROCEDIMIENTOS', misProcedimiento
 Blockly.JavaScript.addReservedWords('exit');
 
 function myUpdateFunction(event) {
-    var code = codigoInicialPython();
+    let code = codigoInicialPython();
     code += Blockly.Python.workspaceToCode(workspace);
     document.getElementById('codigo_python').value = code;
     if (!(event instanceof Blockly.Events.Ui)) {
@@ -69,38 +69,38 @@ function initApi(interpreter, globalObject) {
     Blockly.DOMParser = window.DOMParser;
     Blockly.Element = window.Element;
     Blockly.document = window.document;
-
+    let wrapper;
 
     // Add an API function for the leerCaracter() block.
-    var wrapper = function () {
+    wrapper = function () {
         return leerCaracter();
     };
     interpreter.setProperty(globalObject, 'leerCaracter',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the avanzarCaracter() block.
-    var wrapper = function () {
+    wrapper = function () {
         return avanzarCaracter();
     };
     interpreter.setProperty(globalObject, 'avanzarCaracter',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the hayMasCaracteres() block.
-    var wrapper = function () {
+    wrapper = function () {
         return hayMasCaracteres();
     };
     interpreter.setProperty(globalObject, 'hayMasCaracteres',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the leerEntradaCompleta() block.
-    var wrapper = function () {
+    wrapper = function () {
         return leerEntradaCompleta();
     };
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the imprimir() block.
-    var wrapper = function (valor) {
+    wrapper = function (valor) {
         return imprimir(valor);
     };
     interpreter.setProperty(globalObject, 'imprimir',
@@ -108,21 +108,21 @@ function initApi(interpreter, globalObject) {
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the cambiarColorTexto() block.
-    var wrapper = function (color) {
+    wrapper = function (color) {
         return cambiarColorTexto(color);
     };
     interpreter.setProperty(globalObject, 'cambiarColorTexto',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the cambiarColorTexto() block.
-    var wrapper = function () {
+    wrapper = function () {
         return obtenerCaracter();
     };
     interpreter.setProperty(globalObject, 'obtenerCaracter',
         interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the cambiarColorTexto() block.
-    var wrapper = function () {
+    wrapper = function () {
         return saltoDeLinea();
     };
     interpreter.setProperty(globalObject, 'saltoDeLinea',
@@ -133,7 +133,7 @@ function initApi(interpreter, globalObject) {
 
 
     // Add an API function for highlighting blocks.
-    var wrapper = function (id) {
+    wrapper = function (id) {
         return workspace.highlightBlock(id);
     };
     interpreter.setProperty(globalObject, 'highlightBlock',
@@ -203,11 +203,10 @@ function cargarSolucion(contenido) {
         solucion = atob(data.solucion);
         let workspace = Blockly.getMainWorkspace();
         workspace.clear();
-        Blockly.Events.disable()
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(solucion), workspace);
     } catch (e) {
         console.error(e);
-        throw "Lo siento, este archivo no tiene una solución de UNIPE Blockly.";
+        alert("Lo siento, este archivo no tiene una solución de UNIPE Blockly.");
     }
 
     let errors = [];
@@ -221,7 +220,9 @@ function cargarSolucion(contenido) {
     }
 
     if (errors.length !== 0) {
-        throw errors.join('\n');
+        let e = errors.join('\n')
+        console.error(e);
+        alert(e);
     }
 }
 
@@ -231,7 +232,7 @@ function save() {
         actividad: actividad,
         solucion: btoa(Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace())))
     };
-    var a = document.createElement("a");
+    let a = document.createElement("a");
     a.download = actividad + '.spbq';
     a.href = URL.createObjectURL(new Blob([JSON.stringify(contenido)], {type: 'application/octet-stream'}));
     a.type = 'application/octet-stream';
@@ -257,7 +258,7 @@ function execute() {
             myInterpreter = new Interpreter(latestCode, initApi);
             runner = function () {
                 if (myInterpreter) {
-                    var hasMore = myInterpreter.run();
+                    let hasMore = myInterpreter.run();
                     if (hasMore) {
                         // Execution is currently blocked by some async call.
                         // Try again later.
@@ -308,14 +309,14 @@ function leerEntradaCompleta() {
 
 
 function obtenerCaracter() {
-    var caracter = document.getElementById("input_text").value.charAt(posicion_cadena_caracteres);
+    let caracter = document.getElementById("input_text").value.charAt(posicion_cadena_caracteres);
     posicion_cadena_caracteres += 1;
     return caracter;
 }
 
 function imprimir(valor) {
-    valor = valor ? valor.toString() : '';
-    outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + valor + "</span>";
+    let texto = valor ? valor.toString() : '';
+    outputArea.innerHTML = outputArea.innerHTML + "<span style='color:" + color_texto + "'>" + texto + "</span>";
 }
 
 
@@ -351,23 +352,23 @@ function misProcedimientosCallback(workspace) {
  * @return {!Array.<!Element>} Lista con bloques de tipo "llamada a función/procedimiento" (formato XML).
  */
 function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
-    var xmlList = [];
-    var procedureDefs = workspace.getBlocksByType('procedures_def' + tipoRutina, true);
-    for (var procIdx in procedureDefs) {
-        var blockText = '<block type="procedures_call' + tipoRutina + '">' +
+    let xmlList = [];
+    let procedureDefs = workspace.getBlocksByType('procedures_def' + tipoRutina, true);
+    for (let procIdx in procedureDefs) {
+        let blockText = '<block type="procedures_call' + tipoRutina + '">' +
 
             '<field name="NAME">' + procedureDefs[procIdx].getFieldValue('NAME') + '</field>';
 
 
         if (procedureDefs[procIdx].arguments_.length > 0) {
             blockText += '<mutation>';
-            for (var argIdx in procedureDefs[procIdx].arguments_) {
+            for (let argIdx in procedureDefs[procIdx].arguments_) {
                 blockText += '<arg name="' + procedureDefs[procIdx].arguments_[argIdx] + '"></arg>';
             }
             blockText += '</mutation>';
         }
         blockText += '</block>';
-        var block = Blockly.Xml.textToDom(blockText);
+        let block = Blockly.Xml.textToDom(blockText);
         xmlList.push(block);
     }
     return xmlList;
@@ -387,8 +388,8 @@ rutinasConsolaPython = ["leer_caracter",
  * @return {!String} Código Python con llamadas a import para cada rutina del módulo consola.
  */
 function codigoInicialPython() {
-    var code = ""
-    for (rutinaIdx in rutinasConsolaPython) {
+    let code = ""
+    for (let rutinaIdx in rutinasConsolaPython) {
         code += "from consola import " + rutinasConsolaPython[rutinaIdx] + "\n"
     }
     code += "\n"
