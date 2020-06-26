@@ -24,6 +24,11 @@ def leer_entrada_completa():
     """
     return entrada
 
+def leer_numero():
+    """ Retorna el número de 'entrada'.
+    """
+    return int(entrada)
+
 
 def obtener_caracter():
     """ Retorna el carácter actual de 'entrada' y anvanza la 'posición actual'.
