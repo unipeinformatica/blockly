@@ -65,10 +65,7 @@ Blockly.defineBlocksWithJsonArray([
     },
     {
         "type": "cambiar_color_texto",
-
-
         "message0": "Cambiar el color del texto a: %1",
-
         "args0": [
             {
                 "type": "field_colour",
