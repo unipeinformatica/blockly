@@ -45,6 +45,15 @@ Blockly.defineBlocksWithJsonArray([
         "helpUrl": ""
     },
     {
+        "type": "leer_numero",
+        "message0": "Leer número de la entrada",
+        "inputsInline": true,
+        "output": null,
+        "colour": Blockly.Blocks.primitivas.COLOUR,
+        "tooltip": "Lee un número de la entrada",
+        "helpUrl": ""
+    },
+    {
         "type": "avanzar_caracter",
         "message0": "Avanzar caracter",
         "inputsInline": true,
@@ -138,6 +147,21 @@ Blockly.JavaScript['leer_entrada_completa'] = function (block) {
 
 Blockly.Python['leer_entrada_completa'] = function (block) {
     let code = 'leer_entrada_completa()';
+    return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
+/**
+ * Funciones generadoras de código correspodientes al bloque "leer_numero"
+ * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
+ * @param block
+ */
+Blockly.JavaScript['leer_numero'] = function (block) {
+    let code = 'leerNumero()';
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.Python['leer_numero'] = function (block) {
+    let code = 'leer_numero()';
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 

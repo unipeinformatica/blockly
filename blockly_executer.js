@@ -98,6 +98,13 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'leerEntradaCompleta',
         interpreter.createNativeFunction(func_leerEntradaCompleta));
 
+    // Add an API function for the leerNumero() block.
+    let func_leerNumero = function () {
+        return leerNumero();
+    };
+    interpreter.setProperty(globalObject, 'leerNumero',
+        interpreter.createNativeFunction(func_leerNumero));
+
     // Add an API function for the imprimir() block.
     let func_imprimir = function (valor) {
         return imprimir(valor);
@@ -306,6 +313,16 @@ function leerEntradaCompleta() {
     return document.getElementById("input_text").value;
 }
 
+function leerNumero() {
+    let entrada = document.getElementById("input_text").value;
+    let salida;
+    if (isNaN(entrada)) {
+        salida = -1;
+    } else {
+        salida = Number(entrada);
+    }
+    return salida;
+}
 
 function obtenerCaracter() {
     let caracter = document.getElementById("input_text").value.charAt(posicion_cadena_caracteres);
@@ -375,6 +392,7 @@ function generarBloquesFuncionProcedimiento(workspace, tipoRutina) {
 
 rutinasConsolaPython = ["leer_caracter",
     "leer_entrada_completa",
+    "leer_numero",
     "obtener_caracter",
     "avanzar_caracter",
     "hay_mas_caracteres",
