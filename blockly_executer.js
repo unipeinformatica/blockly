@@ -203,7 +203,6 @@ function cargarSolucion(contenido) {
         solucion = atob(data.solucion);
         let workspace = Blockly.getMainWorkspace();
         workspace.clear();
-        Blockly.Events.disable()
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(solucion), workspace);
     } catch (e) {
         console.error(e);
