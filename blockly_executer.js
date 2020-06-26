@@ -48,6 +48,7 @@ Blockly.JavaScript.addReservedWords('exit');
 function myUpdateFunction(event) {
     let code = codigoInicialPython();
     code += Blockly.Python.workspaceToCode(workspace);
+    code += "\n";
     document.getElementById('codigo_python').value = code;
     if (!(event instanceof Blockly.Events.Ui)) {
         // Something changed. Parser needs to be reloaded.
