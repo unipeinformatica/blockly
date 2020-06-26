@@ -228,7 +228,7 @@ Blockly.JavaScript['cambiar_color_texto'] = function (block) {
 
 Blockly.Python['cambiar_color_texto'] = function (block) {
     let color = block.getFieldValue('COLOR');
-    let code = 'cambiarColorTexto("' + color + '")\n';
+    let code = 'cambiar_color_texto("' + color + '")\n';
     return code;
 };
 
