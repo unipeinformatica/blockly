@@ -118,13 +118,13 @@ Blockly.defineBlocksWithJsonArray([
  * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
  */
 Blockly.JavaScript['leer_caracter'] = function (block) {
-    var code = 'leerCaracter()';
+    let code = 'leerCaracter()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 
 };
 
 Blockly.Python['leer_caracter'] = function (block) {
-    var code = 'leer_caracter()';
+    let code = 'leer_caracter()';
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
@@ -135,12 +135,12 @@ Blockly.Python['leer_caracter'] = function (block) {
  * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
  */
 Blockly.JavaScript['leer_entrada_completa'] = function (block) {
-    var code = 'leerEntradaCompleta()';
+    let code = 'leerEntradaCompleta()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.Python['leer_entrada_completa'] = function (block) {
-    var code = 'leer_entrada_completa()';
+    let code = 'leer_entrada_completa()';
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
@@ -151,13 +151,13 @@ Blockly.Python['leer_entrada_completa'] = function (block) {
  * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
  */
 Blockly.JavaScript['obtener_caracter'] = function (block) {
-    var code = 'obtenerCaracter()';
+    let code = 'obtenerCaracter()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 
 Blockly.Python['obtener_caracter'] = function (block) {
-    var code = 'obtener_caracter()';
+    let code = 'obtener_caracter()';
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
@@ -168,13 +168,13 @@ Blockly.Python['obtener_caracter'] = function (block) {
  * @return {string} Código JavaScript o Python.
  */
 Blockly.JavaScript['avanzar_caracter'] = function (block) {
-    var code = 'avanzarCaracter();\n';
+    let code = 'avanzarCaracter();\n';
     return code;
 
 };
 
 Blockly.Python['avanzar_caracter'] = function (block) {
-    var code = 'avanzar_caracter()\n';
+    let code = 'avanzar_caracter()\n';
     return code;
 };
 
@@ -185,13 +185,13 @@ Blockly.Python['avanzar_caracter'] = function (block) {
  * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
  */
 Blockly.JavaScript['hay_mas_caracteres'] = function (block) {
-    var code = 'hayMasCaracteres()';
+    let code = 'hayMasCaracteres()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 
 };
 
 Blockly.Python['hay_mas_caracteres'] = function (block) {
-    var code = 'hay_mas_caracteres()';
+    let code = 'hay_mas_caracteres()';
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
@@ -202,14 +202,14 @@ Blockly.Python['hay_mas_caracteres'] = function (block) {
  * @return {string} Código JavaScript o Python.
  */
 Blockly.JavaScript['imprimir'] = function (block) {
-    var valor = Blockly.JavaScript.valueToCode(block, 'VALOR', Blockly.JavaScript.ORDER_NONE);
-    var code = 'imprimir(' + valor + ');\n';
+    let valor = Blockly.JavaScript.valueToCode(block, 'VALOR', Blockly.JavaScript.ORDER_NONE);
+    let code = 'imprimir(' + valor + ');\n';
     return code;
 };
 
 Blockly.Python['imprimir'] = function (block) {
-    var valor = Blockly.Python.valueToCode(block, 'VALOR', Blockly.Python.ORDER_NONE);
-    var code = 'imprimir(' + valor + ')\n';
+    let valor = Blockly.Python.valueToCode(block, 'VALOR', Blockly.Python.ORDER_NONE);
+    let code = 'imprimir(' + valor + ')\n';
     return code;
 };
 
@@ -220,15 +220,15 @@ Blockly.Python['imprimir'] = function (block) {
  * @return {string} Código JavaScript o Python.
  */
 Blockly.JavaScript['cambiar_color_texto'] = function (block) {
-    var color = block.getFieldValue('COLOR');
-    var code = 'cambiarColorTexto("' + color + '");\n';
+    let color = block.getFieldValue('COLOR');
+    let code = 'cambiarColorTexto("' + color + '");\n';
     return code;
 
 };
 
 Blockly.Python['cambiar_color_texto'] = function (block) {
-    var color = block.getFieldValue('COLOR');
-    var code = 'cambiarColorTexto("' + color + '")\n';
+    let color = block.getFieldValue('COLOR');
+    let code = 'cambiarColorTexto("' + color + '")\n';
     return code;
 };
 
@@ -239,12 +239,12 @@ Blockly.Python['cambiar_color_texto'] = function (block) {
  * @return {!List.<string, enum>} Código JavaScript o Python, Orden de precedencia
  */
 Blockly.JavaScript['salto_de_linea'] = function (block) {
-    var code = 'saltoDeLinea()';
+    let code = 'saltoDeLinea()';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 
 };
 
 Blockly.Python['salto_de_linea'] = function (block) {
-    var code = '\'\\n\'';
+    let code = '\'\\n\'';
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
