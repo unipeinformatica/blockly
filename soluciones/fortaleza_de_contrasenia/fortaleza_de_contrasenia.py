@@ -10,19 +10,19 @@ longitud = None
 
 def Analizar_fortaleza():
   global longitud
-  Longitud_de_contrase_C3_B1a()
+  Longitud_de_contraseña()
   if 8 < longitud:
-    cambiarColorTexto("#33cc00")
+    cambiar_color_texto("#33cc00")
     imprimir('VERDE')
   else:
     if 5 > longitud:
-      cambiarColorTexto("#ff4040")
+      cambiar_color_texto("#ff4040")
       imprimir('ROJO')
     else:
-      cambiarColorTexto("#ffff00")
+      cambiar_color_texto("#ffff00")
       imprimir('AMARILLO')
 
-def Longitud_de_contrase_C3_B1a():
+def Longitud_de_contraseña():
   global longitud
   longitud = 0
   while hay_mas_caracteres():
